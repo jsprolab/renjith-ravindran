@@ -62,10 +62,22 @@ export const Home = () => {
   }, [menuOpen])
   return (
     <main className={`relative`}>
+      <div style={{ 
+        position: 'fixed', 
+        top: '150px', 
+        left: '10px', 
+        background: 'green', 
+        color: 'white', 
+        padding: '10px', 
+        zIndex: '10001',
+        fontSize: '14px'
+      }}>
+        Home Component is rendering!
+      </div>
       <PageTitle title="Home"></PageTitle>
       {/* End pagetitle */}
 
-      <section className="z-[100] bg-white dark:bg-black min-h-screen bg-no-repeat bg-center bg-cover bg-fixed w-full">
+      <section className="z-[100] bg-white dark:bg-black min-h-screen bg-no-repeat bg-center bg-cover bg-fixed w-full" style={{ backgroundColor: 'yellow', border: '5px solid red' }}>
         <div className={`container z-[1000] w-full bg-primary-bg-light dark:bg-primary-bg-dark lg:bg-transparent lg:dark:bg-transparent flex justify-between py-5 lg:px-0 lg:pt-[35px]`}>
           <div className={`w-full z-[1000] flex justify-between items-center px-4`}>
             {/* website logo */}
