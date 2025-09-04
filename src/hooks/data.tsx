@@ -17,11 +17,13 @@ export type DataReturnType = ReturnType<typeof data>
 
 export const data = () => {
     const [check, setCheck] = useState(false)
-    const [local, setLocal] = useState(localStorage.getItem("theme"))
+    const [local, setLocal] = useState(typeof window !== 'undefined' ? localStorage.getItem("theme") : null)
     const [currentImgSelection, setCurrentImgSelection] = useState(avatarIdea)
     const [privacyPolicyIsOpen, setPrivacyPolicyIsOpen] = useState(false)
 
     useEffect(() => {
+        if (typeof window === 'undefined') return; // Skip on server-side
+        
         const themeValue = localStorage?.getItem("theme");
 
         if (!themeValue) {
@@ -41,6 +43,8 @@ export const data = () => {
         if (value !== "dark" && value !== "light") {
             return
         }
+        if (typeof window === 'undefined') return; // Skip on server-side
+        
         value === "dark"
             ? setCheck(false)
             : setCheck(true)
