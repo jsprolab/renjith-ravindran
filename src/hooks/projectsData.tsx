@@ -1,17 +1,18 @@
 import { AppleConceptDesign, BrokerAutoPage, CgNetflixClone } from "../assets/projects"
-import { techStackData } from "./techStackData"
+import { FaReact } from "react-icons/fa";
+import { SiTypescript, SiTailwindcss, SiMongodb, SiNextdotjs } from "react-icons/si";
 
 export type ProjectsDataReturnType = ReturnType<typeof projectsData>
 
 export function projectsData() {
-    const { techStack } = techStackData()
-    const {
-        react,
-        typescript,
-        tailwind,
-        mongoDB,
-        nextjs
-    } = techStack
+    // Define tech stack icons directly to avoid circular dependency
+    const techStack = {
+        react: { id: 1, Icon: FaReact, tooltip: "React", animation: "animate-spin-slow", color: "#5ed3f2" },
+        typescript: { id: 3, Icon: SiTypescript, tooltip: "TypeScript", animation: null, color: "#3074bf" },
+        tailwind: { id: 6, Icon: SiTailwindcss, tooltip: "Tailwind CSS", animation: null, color: "#37bcf7" },
+        mongoDB: { id: 9, Icon: SiMongodb, tooltip: "MongoDB", animation: null, color: "#3AB84D" },
+        nextjs: { id: 13, Icon: SiNextdotjs, tooltip: "Next.js", animation: null, color: "#000" }
+    }
 
     const projectsArray = [
         {
@@ -22,9 +23,9 @@ export function projectsData() {
             codeLink: "https://github.com/cagarcia2011/cg-netflix-clone",
             image: CgNetflixClone,
             icons: [
-                nextjs,
-                typescript,
-                mongoDB
+                techStack.nextjs,
+                techStack.typescript,
+                techStack.mongoDB
             ]
         },
         {
@@ -35,9 +36,9 @@ export function projectsData() {
             codeLink: "",
             image: BrokerAutoPage,
             icons: [
-                react,
-                typescript,
-                tailwind
+                techStack.react,
+                techStack.typescript,
+                techStack.tailwind
             ]
         },
         {
@@ -48,9 +49,9 @@ export function projectsData() {
             codeLink: "https://github.com/cagarcia2011/apple-landing-page-concept#apple-concept-landing-page",
             image: AppleConceptDesign,
             icons: [
-                react,
-                typescript,
-                tailwind
+                techStack.react,
+                techStack.typescript,
+                techStack.tailwind
             ]
         },
     ]
