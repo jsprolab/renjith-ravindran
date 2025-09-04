@@ -42,62 +42,10 @@ function App() {
 
   return (
     <>
-      <div style={{ 
-        position: 'fixed', 
-        top: '10px', 
-        left: '10px', 
-        background: 'red', 
-        color: 'white', 
-        padding: '10px', 
-        zIndex: '10000',
-        fontSize: '12px'
-      }}>
-        DEBUG: React App is rendering
-      </div>
-      <div style={{ 
-        position: 'fixed', 
-        top: '50px', 
-        left: '10px', 
-        background: 'blue', 
-        color: 'white', 
-        padding: '10px', 
-        zIndex: '10000',
-        fontSize: '12px'
-      }}>
-        <div className="text-white bg-green-500 p-2">Tailwind Test</div>
-      </div>
       <ContextProvider>
         <Router basename={import.meta.env.PROD ? '/renjith-ravindran' : '/'}>
-          <div style={{ 
-            position: 'fixed', 
-            top: '200px', 
-            left: '10px', 
-            background: 'purple', 
-            color: 'white', 
-            padding: '10px', 
-            zIndex: '10001',
-            fontSize: '12px'
-          }}>
-            Router is working - basename: {import.meta.env.PROD ? '/renjith-ravindran' : '/'}
-          </div>
           <Routes>
-            <Route path='/' element={
-              <div>
-                <div style={{ 
-                  position: 'fixed', 
-                  top: '250px', 
-                  left: '10px', 
-                  background: 'orange', 
-                  color: 'white', 
-                  padding: '10px', 
-                  zIndex: '10001',
-                  fontSize: '12px'
-                }}>
-                  About to render Home component
-                </div>
-                <Home />
-              </div>
-            } />
+            <Route path='/' element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="projects" element={<Projects />} />
             <Route path='resume' element={<Resume />} />

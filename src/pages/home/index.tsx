@@ -19,36 +19,7 @@ import logo from '../../assets/logo/renjith.png'
 
 export const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  
-  // Add debug logging
-  console.log('Home component rendering...');
-  
-  let setPrivacyPolicyIsOpen, local;
-  try {
-    const data = useData();
-    setPrivacyPolicyIsOpen = data.setPrivacyPolicyIsOpen;
-    local = data.local;
-    console.log('useData() successful:', data);
-  } catch (error) {
-    console.error('useData() failed:', error);
-    return (
-      <div style={{ 
-        padding: '20px', 
-        color: 'red', 
-        backgroundColor: 'yellow',
-        border: '2px solid red',
-        fontSize: '16px',
-        position: 'fixed',
-        top: '100px',
-        left: '0',
-        right: '0',
-        zIndex: '9999'
-      }}>
-        <h2>ERROR: Home component - useData() failed</h2>
-        <p>Error: {error instanceof Error ? error.message : String(error)}</p>
-      </div>
-    );
-  }
+  const { setPrivacyPolicyIsOpen, local } = useData();
 
   const openPrivacyPolicy = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
@@ -62,22 +33,10 @@ export const Home = () => {
   }, [menuOpen])
   return (
     <main className={`relative`}>
-      <div style={{ 
-        position: 'fixed', 
-        top: '150px', 
-        left: '10px', 
-        background: 'green', 
-        color: 'white', 
-        padding: '10px', 
-        zIndex: '10001',
-        fontSize: '14px'
-      }}>
-        Home Component is rendering!
-      </div>
       <PageTitle title="Home"></PageTitle>
       {/* End pagetitle */}
 
-      <section className="z-[100] bg-white dark:bg-black min-h-screen bg-no-repeat bg-center bg-cover bg-fixed w-full" style={{ backgroundColor: 'yellow', border: '5px solid red' }}>
+      <section className="z-[100] bg-white dark:bg-black min-h-screen bg-no-repeat bg-center bg-cover bg-fixed w-full">
         <div className={`container z-[1000] w-full bg-primary-bg-light dark:bg-primary-bg-dark lg:bg-transparent lg:dark:bg-transparent flex justify-between py-5 lg:px-0 lg:pt-[35px]`}>
           <div className={`w-full z-[1000] flex justify-between items-center px-4`}>
             {/* website logo */}
