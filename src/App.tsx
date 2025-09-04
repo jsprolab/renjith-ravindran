@@ -42,6 +42,18 @@ function App() {
 
   return (
     <>
+      <div style={{ 
+        position: 'fixed', 
+        top: '10px', 
+        left: '10px', 
+        background: 'red', 
+        color: 'white', 
+        padding: '10px', 
+        zIndex: '10000',
+        fontSize: '12px'
+      }}>
+        DEBUG: React App is rendering
+      </div>
       <ContextProvider>
         <Router>
           <Routes>
