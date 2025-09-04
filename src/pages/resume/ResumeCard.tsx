@@ -58,9 +58,6 @@ export const ResumeCard = () => {
                         <h3 className="text-xl dark:text-white"> {item.title} </h3>
                         <p className="dark:text-[#b7b7b7]">{item.place}</p>
                         {
-                            item.gpa && <p className="dark:text-[#b7b7b7]">GPA: {item.gpa}</p>
-                        }
-                        {
                             item.link && <a target="_blank" rel="noreferrer" href={item.link} className="text-s flex gap-2 items-center justify-center rounded-full bg-gradient-to-r from-accent-color to-variant-bg duration-200 transition ease-linear hover:bg-gradient-to-l px-8 py-3 text-white">Show credential<span><AiOutlineLink /></span></a>
                         }
                     </div>
