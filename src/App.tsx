@@ -41,29 +41,11 @@ function App() {
   }, [])
 
   return (
-    <>
-      <ContextProvider>
-        <Router>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="projects" element={<Projects />} />
-            <Route path='resume' element={<Resume />} />
-            <Route path='contact' element={<Contact />} />
-          </Routes>
-        </Router>
-      </ContextProvider>
-      <ToastContainer 
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        />
-    </>
+    <div style={{ padding: '20px', backgroundColor: 'lightgreen', minHeight: '100vh' }}>
+      <h1>TEST: React App is Working!</h1>
+      <p>If you can see this, React is rendering properly.</p>
+      <p>Testing without ContextProvider and Router...</p>
+    </div>
   );
 }
 
