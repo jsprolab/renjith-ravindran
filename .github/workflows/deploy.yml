@@ -27,13 +27,7 @@ jobs:
           cache: 'npm'
           
       - name: Install dependencies
-        run: npm install
-        
-      - name: Debug - List files
-        run: ls -la
-        
-      - name: Debug - Check package.json
-        run: cat package.json
+        run: npm install --legacy-peer-deps
         
       - name: Build
         run: npm run build
