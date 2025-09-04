@@ -67,7 +67,7 @@ function App() {
         <div className="text-white bg-green-500 p-2">Tailwind Test</div>
       </div>
       <ContextProvider>
-        <Router>
+        <Router basename={process.env.NODE_ENV === 'production' ? '/renjith-ravindran' : '/'}>
           <div style={{ 
             position: 'fixed', 
             top: '200px', 
@@ -78,7 +78,7 @@ function App() {
             zIndex: '10001',
             fontSize: '12px'
           }}>
-            Router is working
+            Router is working - basename: {process.env.NODE_ENV === 'production' ? '/renjith-ravindran' : '/'}
           </div>
           <Routes>
             <Route path='/' element={
