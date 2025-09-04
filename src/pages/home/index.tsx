@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { Link, Outlet } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { HomeCard } from './HomeCard';
 import { 
@@ -12,6 +12,7 @@ import {
   MenuButton, 
   ThemeToggleButton
 } from '../../components'
+import { About } from '../about'
 
 import { useData } from '../../hooks'
 import logo from '../../assets/logo/renjith.png'
@@ -61,7 +62,7 @@ export const Home = () => {
             <DesktopNav />
 
             {/* Content */}
-            <Outlet />
+            <About />
           </div>
         </div>
       </section>
