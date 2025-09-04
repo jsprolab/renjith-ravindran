@@ -68,8 +68,36 @@ function App() {
       </div>
       <ContextProvider>
         <Router>
+          <div style={{ 
+            position: 'fixed', 
+            top: '200px', 
+            left: '10px', 
+            background: 'purple', 
+            color: 'white', 
+            padding: '10px', 
+            zIndex: '10001',
+            fontSize: '12px'
+          }}>
+            Router is working
+          </div>
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={
+              <div>
+                <div style={{ 
+                  position: 'fixed', 
+                  top: '250px', 
+                  left: '10px', 
+                  background: 'orange', 
+                  color: 'white', 
+                  padding: '10px', 
+                  zIndex: '10001',
+                  fontSize: '12px'
+                }}>
+                  About to render Home component
+                </div>
+                <Home />
+              </div>
+            } />
             <Route path="about" element={<About />} />
             <Route path="projects" element={<Projects />} />
             <Route path='resume' element={<Resume />} />
