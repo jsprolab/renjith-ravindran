@@ -19,7 +19,36 @@ import logo from '../../assets/logo/renjith.png'
 
 export const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { setPrivacyPolicyIsOpen, local } = useData();
+  
+  // Add debug logging
+  console.log('Home component rendering...');
+  
+  let setPrivacyPolicyIsOpen, local;
+  try {
+    const data = useData();
+    setPrivacyPolicyIsOpen = data.setPrivacyPolicyIsOpen;
+    local = data.local;
+    console.log('useData() successful:', data);
+  } catch (error) {
+    console.error('useData() failed:', error);
+    return (
+      <div style={{ 
+        padding: '20px', 
+        color: 'red', 
+        backgroundColor: 'yellow',
+        border: '2px solid red',
+        fontSize: '16px',
+        position: 'fixed',
+        top: '100px',
+        left: '0',
+        right: '0',
+        zIndex: '9999'
+      }}>
+        <h2>ERROR: Home component - useData() failed</h2>
+        <p>Error: {error instanceof Error ? error.message : String(error)}</p>
+      </div>
+    );
+  }
 
   const openPrivacyPolicy = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()

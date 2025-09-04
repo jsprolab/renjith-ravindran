@@ -54,6 +54,18 @@ function App() {
       }}>
         DEBUG: React App is rendering
       </div>
+      <div style={{ 
+        position: 'fixed', 
+        top: '50px', 
+        left: '10px', 
+        background: 'blue', 
+        color: 'white', 
+        padding: '10px', 
+        zIndex: '10000',
+        fontSize: '12px'
+      }}>
+        <div className="text-white bg-green-500 p-2">Tailwind Test</div>
+      </div>
       <ContextProvider>
         <Router>
           <Routes>
