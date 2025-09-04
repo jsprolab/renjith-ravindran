@@ -41,7 +41,9 @@ function App() {
   }, [])
 
   return (
-    <>
+    <div style={{ padding: '20px', backgroundColor: 'lightblue', minHeight: '100vh' }}>
+      <h1>TEST: React App is Working!</h1>
+      <p>If you can see this, React is rendering properly.</p>
       <ContextProvider>
         <Router>
           <Routes>
@@ -63,7 +65,7 @@ function App() {
         draggable
         pauseOnHover
         />
-    </>
+    </div>
   );
 }
 
