@@ -18,14 +18,27 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
     e.preventDefault() // Prevent default form submission and redirect
     setInProgress(true)
     setEmailSent(false)
-    
+
     try {
       const formData = new FormData(e.currentTarget);
+      
+      // Validate form data
+      const name = formData.get('name')?.toString() || '';
+      const email = formData.get('email')?.toString() || '';
+      const message = formData.get('message')?.toString() || '';
+      
+      if (!name || !email || !message) {
+        throw new Error('Please fill in all required fields');
+      }
       
                   // Use dynamic API URL based on current domain
                   const apiUrl = window.location.hostname === 'renjith.online' 
                     ? 'https://renjith-ravindran.vercel.app/api/send-email-simple'
                     : '/api/send-email-simple';
+                  
+                  // Create abort controller for timeout
+                  const controller = new AbortController();
+                  const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
                   
                   const response = await fetch(apiUrl, {
                     method: 'POST',
@@ -33,20 +46,23 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
                       'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                      name: formData.get('name'),
-                      email: formData.get('email'),
-                      message: formData.get('message')
+                      name,
+                      email,
+                      message
                     }),
+                    signal: controller.signal
                   });
+                  
+                  clearTimeout(timeoutId);
       
-      const result = await response.json();
+      let result;
+      try {
+        result = await response.json();
+      } catch (jsonError) {
+        throw new Error('Invalid response from server');
+      }
       
-      // Debug logging
-      console.log('API Response:', result);
-      console.log('Response OK:', response.ok);
-      console.log('Result Success:', result.success);
-      
-      if (response.ok && result.success) {
+      if (response.ok && result && result.success === true) {
         setInProgress(false)
         setEmailSent(true)
         toast.success("Message Sent successfully!", {
@@ -62,13 +78,14 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
         // Reset the form
         e.currentTarget.reset();
       } else {
-        throw new Error(result.message || 'Failed to send message');
+        const errorMessage = (result && result.message) || 'Failed to send message';
+        throw new Error(errorMessage);
       }
     } catch (error) {
       setInProgress(false)
       setEmailSent(false)
-      console.error('Contact form error:', error);
-      toast.error(`Error: ${error.message}`, {
+      const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+      toast.error(errorMessage, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
