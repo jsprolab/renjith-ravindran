@@ -59,8 +59,18 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
       try {
         result = await response.json();
       } catch (jsonError) {
+        console.error('JSON parse error:', jsonError);
         throw new Error('Invalid response from server');
       }
+      
+      // Detailed debugging
+      console.log('=== CONTACT FORM DEBUG ===');
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+      console.log('Result:', result);
+      console.log('Result success:', result?.success);
+      console.log('Result type:', typeof result?.success);
+      console.log('========================');
       
       if (response.ok && result && result.success === true) {
         setInProgress(false)
@@ -78,6 +88,11 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
         // Reset the form
         e.currentTarget.reset();
       } else {
+        console.log('=== ERROR CASE ===');
+        console.log('Response ok:', response.ok);
+        console.log('Result success:', result?.success);
+        console.log('Result message:', result?.message);
+        console.log('==================');
         const errorMessage = (result && result.message) || 'Failed to send message';
         throw new Error(errorMessage);
       }
