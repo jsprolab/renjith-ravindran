@@ -59,18 +59,65 @@ export default async function handler(req, res) {
           });
         }
 
-        // Send email notification
+        // Send email notification using Resend
         try {
-          const emailResponse = await fetch(`${process.env.VERCEL_URL || 'http://localhost:3000'}/api/email/send`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, email, message })
-          });
+          const { Resend } = require('resend');
+          const resend = new Resend(process.env.RESEND_API_KEY);
 
-          if (!emailResponse.ok) {
-            console.error('Failed to send email notification');
+          if (process.env.RESEND_API_KEY) {
+            const { data, error } = await resend.emails.send({
+              from: 'Portfolio Contact Form <onboarding@resend.dev>',
+              to: ['jobs.renjith@gmail.com'],
+              subject: `New Contact Form Submission from ${name}`,
+              html: `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                  <h2 style="color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px;">
+                    New Contact Form Submission
+                  </h2>
+                  
+                  <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
+                    <h3 style="color: #495057; margin-top: 0;">Contact Details:</h3>
+                    <p><strong>Name:</strong> ${name}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Message:</strong></p>
+                    <div style="background-color: white; padding: 15px; border-left: 4px solid #007bff; margin-top: 10px;">
+                      ${message.replace(/\n/g, '<br>')}
+                    </div>
+                  </div>
+                  
+                  <div style="background-color: #e9ecef; padding: 15px; border-radius: 5px; margin-top: 20px;">
+                    <p style="margin: 0; color: #6c757d; font-size: 14px;">
+                      <strong>Submitted:</strong> ${new Date().toLocaleString()}<br>
+                      <strong>From:</strong> Portfolio Contact Form
+                    </p>
+                  </div>
+                  
+                  <div style="margin-top: 20px; text-align: center;">
+                    <a href="mailto:${email}" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">
+                      Reply to ${name}
+                    </a>
+                  </div>
+                </div>
+              `,
+              text: `
+                New Contact Form Submission
+                
+                Name: ${name}
+                Email: ${email}
+                Message: ${message}
+                
+                Submitted: ${new Date().toLocaleString()}
+                From: Portfolio Contact Form
+              `
+            });
+
+            if (error) {
+              console.error('Resend email error:', error);
+            } else {
+              console.log('Email sent successfully via Resend:', data.id);
+            }
+          } else {
+            console.log('RESEND_API_KEY not configured, skipping email notification');
           }
         } catch (emailError) {
           console.error('Error sending email:', emailError);

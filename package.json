@@ -7,15 +7,21 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "send-email": "node scripts/send-email.js",
+    "send-email-resend": "node scripts/send-email-resend.js",
+    "send-email-sendgrid": "node scripts/send-email-sendgrid.js",
+    "test-email-flow": "node scripts/test-email-flow.js"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fontsource/roboto": "^4.5.8",
     "@mui/material": "^5.11.13",
+    "@sendgrid/mail": "^8.1.5",
     "aos": "^2.3.4",
     "framer-motion": "^10.6.0",
+    "node-fetch": "^3.3.2",
     "nodemailer": "^7.0.6",
     "rc-progress": "^3.4.1",
     "react": "^18.2.0",

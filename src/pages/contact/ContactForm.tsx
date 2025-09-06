@@ -22,17 +22,17 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
     try {
       const formData = new FormData(e.currentTarget);
       
-      const response = await fetch('/api/contacts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.get('name'),
-          email: formData.get('email'),
-          message: formData.get('message')
-        }),
-      });
+                  const response = await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      name: formData.get('name'),
+                      email: formData.get('email'),
+                      message: formData.get('message')
+                    }),
+                  });
       
       if (response.ok) {
         setInProgress(false)
