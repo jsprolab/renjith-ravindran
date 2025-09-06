@@ -22,7 +22,7 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
     try {
       const formData = new FormData(e.currentTarget);
       
-                  const response = await fetch('/api/send-email-simple', {
+                  const response = await fetch('/api/send-email-fallback', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
