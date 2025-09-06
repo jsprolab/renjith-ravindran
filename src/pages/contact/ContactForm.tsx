@@ -19,8 +19,11 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
     setInProgress(true)
     setEmailSent(false)
 
+    // Store form reference before async operations
+    const form = e.currentTarget;
+
     try {
-      const formData = new FormData(e.currentTarget);
+      const formData = new FormData(form);
       
       // Validate form data
       const name = formData.get('name')?.toString() || '';
@@ -63,15 +66,6 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
         throw new Error('Invalid response from server');
       }
       
-      // Detailed debugging
-      console.log('=== CONTACT FORM DEBUG ===');
-      console.log('Response status:', response.status);
-      console.log('Response ok:', response.ok);
-      console.log('Result:', result);
-      console.log('Result success:', result?.success);
-      console.log('Result type:', typeof result?.success);
-      console.log('========================');
-      
       if (response.ok && result && result.success === true) {
         setInProgress(false)
         setEmailSent(true)
@@ -85,14 +79,9 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
           progress: undefined,
         });
         handleImageChange(false, avatars.success)
-        // Reset the form
-        e.currentTarget.reset();
+        // Reset the form using stored reference
+        form.reset();
       } else {
-        console.log('=== ERROR CASE ===');
-        console.log('Response ok:', response.ok);
-        console.log('Result success:', result?.success);
-        console.log('Result message:', result?.message);
-        console.log('==================');
         const errorMessage = (result && result.message) || 'Failed to send message';
         throw new Error(errorMessage);
       }
