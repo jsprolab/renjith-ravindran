@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import emailjs from "@emailjs/browser"
 import { toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
 import { useData } from '../../hooks'
@@ -11,53 +10,54 @@ type ContactFormProps = {
 }
 
 export const ContactForm = ({ condition }: ContactFormProps) => {
-  const form = useRef();
+  const form = useRef<HTMLFormElement>(null);
   const { handleImageChange, avatars } = useData()
   const [inProgress, setInProgress] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setInProgress(true)
     setEmailSent(false)
-    emailjs
-      .sendForm(
-        "service_mulczjc",
-        "template_wh4hgke",
-        form.current,
-        "HUV4r_gJoKFUBa6Cz"
-      )
-      .then(
-        (result) => {
-          setInProgress(false)
-          setEmailSent(true)
-          toast.success("Message Sent successfully!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-          handleImageChange(false, avatars.success)
-          let myform: any;
-          myform = document.getElementById("myForm");
-          myform.reset();
-        },
-        (error) => {
-          setInProgress(false)
-          setEmailSent(false)
-          toast.error("Ops Message not Sent!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        }
-      );
+    
+    try {
+      const formData = new FormData(form.current!);
+      
+      const response = await fetch('https://getform.io/f/bllqglqb', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      if (response.ok) {
+        setInProgress(false)
+        setEmailSent(true)
+        toast.success("Message Sent successfully!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        handleImageChange(false, avatars.success)
+        form.current?.reset();
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      setInProgress(false)
+      setEmailSent(false)
+      toast.error("Ops Message not Sent!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   useEffect(() => {
