@@ -11,7 +11,8 @@
     "send-email": "node scripts/send-email.js",
     "send-email-resend": "node scripts/send-email-resend.js",
     "send-email-sendgrid": "node scripts/send-email-sendgrid.js",
-    "test-email-flow": "node scripts/test-email-flow.js"
+    "test-email-flow": "node scripts/test-email-flow.js",
+    "setup-admin": "node scripts/setup-admin.js"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -19,8 +20,14 @@
     "@fontsource/roboto": "^4.5.8",
     "@mui/material": "^5.11.13",
     "@sendgrid/mail": "^8.1.5",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "aos": "^2.3.4",
+    "bcryptjs": "^3.0.2",
     "framer-motion": "^10.6.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.19.0",
+    "mongoose": "^8.18.0",
     "node-fetch": "^3.3.2",
     "nodemailer": "^7.0.6",
     "rc-progress": "^3.4.1",

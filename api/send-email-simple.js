@@ -1,4 +1,7 @@
-// Simple email sending API endpoint without external dependencies
+// Simple email sending API endpoint with database storage
+import connectDB from '../lib/mongodb';
+import Contact from '../models/Contact';
+
 export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -28,11 +31,33 @@ export default async function handler(req, res) {
       });
     }
 
+    // Connect to database
+    await connectDB();
+
+    // Save contact to database
+    const contact = new Contact({
+      name,
+      email,
+      message,
+      ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress || '',
+      userAgent: req.headers['user-agent'] || ''
+    });
+
+    await contact.save();
+    console.log('Contact saved to database:', contact._id);
+
     // Check if Resend API key is configured
     if (!process.env.RESEND_API_KEY) {
-      return res.status(500).json({
-        success: false,
-        message: 'Email service not configured. Please add RESEND_API_KEY to environment variables.'
+      return res.status(200).json({
+        success: true,
+        message: 'Contact saved successfully. Email service not configured.',
+        data: {
+          id: contact._id,
+          name,
+          email,
+          message,
+          createdAt: contact.createdAt
+        }
       });
     }
 
@@ -108,7 +133,14 @@ export default async function handler(req, res) {
     res.status(200).json({
       success: true,
       message: 'Email sent successfully',
-      messageId: result.id
+      messageId: result.id,
+      data: {
+        id: contact._id,
+        name,
+        email,
+        message,
+        createdAt: contact.createdAt
+      }
     });
 
   } catch (error) {

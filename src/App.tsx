@@ -16,6 +16,8 @@ import {
   Projects
 } from './pages';
 
+import { AdminLogin, AdminDashboard } from './pages/admin';
+
 function App() {
 
   useEffect(() => {
@@ -44,13 +46,15 @@ function App() {
     <>
       <ContextProvider>
         <Router basename="/">
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="projects" element={<Projects />} />
-            <Route path='resume' element={<Resume />} />
-            <Route path='contact' element={<Contact />} />
-          </Routes>
+                      <Routes>
+                        <Route path='/' element={<Home />} />
+                        <Route path="about" element={<About />} />
+                        <Route path="projects" element={<Projects />} />
+                        <Route path='resume' element={<Resume />} />
+                        <Route path='contact' element={<Contact />} />
+                        <Route path='admin' element={<AdminLogin />} />
+                        <Route path='admin/dashboard' element={<AdminDashboard />} />
+                      </Routes>
         </Router>
       </ContextProvider>
       <ToastContainer 
