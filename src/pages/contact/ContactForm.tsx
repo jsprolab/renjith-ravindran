@@ -22,7 +22,12 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
     try {
       const formData = new FormData(e.currentTarget);
       
-                  const response = await fetch('/api/send-email-simple', {
+                  // Use dynamic API URL based on current domain
+                  const apiUrl = window.location.hostname === 'renjith.online' 
+                    ? 'https://renjith-ravindran.vercel.app/api/send-email-simple'
+                    : '/api/send-email-simple';
+                  
+                  const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
