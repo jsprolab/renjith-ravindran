@@ -14,15 +14,41 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
   const [inProgress, setInProgress] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault() // Prevent default form submission and redirect
     setInProgress(true)
     setEmailSent(false)
     
-    // Show success message after a short delay to simulate form processing
-    setTimeout(() => {
+    try {
+      const formData = new FormData(e.currentTarget);
+      
+      const response = await fetch('https://getform.io/f/bllqglqb', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      if (response.ok) {
+        setInProgress(false)
+        setEmailSent(true)
+        toast.success("Message Sent successfully!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        handleImageChange(false, avatars.success)
+        // Reset the form
+        e.currentTarget.reset();
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
       setInProgress(false)
-      setEmailSent(true)
-      toast.success("Message Sent successfully!", {
+      setEmailSent(false)
+      toast.error("Ops Message not Sent!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -31,8 +57,7 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
         draggable: true,
         progress: undefined,
       });
-      handleImageChange(false, avatars.success)
-    }, 1000);
+    }
   };
 
   useEffect(() => {
@@ -69,8 +94,6 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
       {/* Form Start */}
       <form 
         id="myForm" 
-        action="https://getform.io/f/bllqglqb" 
-        method="POST"
         onSubmit={handleSubmit}
       >
         {/* Hidden honeypot field to prevent spam */}
