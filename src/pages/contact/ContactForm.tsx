@@ -22,9 +22,16 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
     try {
       const formData = new FormData(e.currentTarget);
       
-      const response = await fetch('https://getform.io/f/bllqglqb', {
+      const response = await fetch('/api/contacts', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          email: formData.get('email'),
+          message: formData.get('message')
+        }),
       });
       
       if (response.ok) {
