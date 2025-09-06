@@ -1,6 +1,6 @@
 // Setup script to create admin user
-import connectDB from '../api/lib/mongodb';
-import Admin from '../api/models/Admin';
+import connectDB from '../api/lib/mongodb.js';
+import Admin from '../api/models/Admin.js';
 
 async function createAdminUser() {
   try {
