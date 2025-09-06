@@ -39,7 +39,14 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
                     }),
                   });
       
-      if (response.ok) {
+      const result = await response.json();
+      
+      // Debug logging
+      console.log('API Response:', result);
+      console.log('Response OK:', response.ok);
+      console.log('Result Success:', result.success);
+      
+      if (response.ok && result.success) {
         setInProgress(false)
         setEmailSent(true)
         toast.success("Message Sent successfully!", {
@@ -55,12 +62,13 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
         // Reset the form
         e.currentTarget.reset();
       } else {
-        throw new Error('Failed to send message');
+        throw new Error(result.message || 'Failed to send message');
       }
     } catch (error) {
       setInProgress(false)
       setEmailSent(false)
-      toast.error("Ops Message not Sent!", {
+      console.error('Contact form error:', error);
+      toast.error(`Error: ${error.message}`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
