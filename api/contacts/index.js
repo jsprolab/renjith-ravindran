@@ -59,8 +59,24 @@ export default async function handler(req, res) {
           });
         }
 
-        // In a real app, you'd save to a database here
-        // For now, we'll just log and return success
+        // Send email notification
+        try {
+          const emailResponse = await fetch(`${process.env.VERCEL_URL || 'http://localhost:3000'}/api/email/send`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, email, message })
+          });
+
+          if (!emailResponse.ok) {
+            console.error('Failed to send email notification');
+          }
+        } catch (emailError) {
+          console.error('Error sending email:', emailError);
+        }
+
+        // Log the submission
         console.log('New contact submission:', {
           name,
           email,
@@ -69,7 +85,7 @@ export default async function handler(req, res) {
           ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress
         });
 
-        // Simulate saving to database
+        // Create contact record
         const newContact = {
           id: Date.now(), // Simple ID generation
           name,
@@ -80,7 +96,7 @@ export default async function handler(req, res) {
 
         res.status(201).json({
           success: true,
-          message: 'Contact submission received successfully',
+          message: 'Contact submission received successfully and email sent',
           data: newContact
         });
 

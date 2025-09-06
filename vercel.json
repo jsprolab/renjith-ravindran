@@ -5,6 +5,9 @@
     },
     "api/contacts/[id].js": {
       "maxDuration": 10
+    },
+    "api/email/send.js": {
+      "maxDuration": 10
     }
   },
   "rewrites": [
