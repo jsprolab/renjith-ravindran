@@ -1,5 +1,7 @@
-// Email service for sending contact form submissions
-import nodemailer from 'nodemailer';
+// Email service using Resend (no app password needed)
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(req, res) {
   // Set CORS headers
@@ -30,19 +32,18 @@ export default async function handler(req, res) {
       });
     }
 
-    // Create transporter using Gmail SMTP
-    const transporter = nodemailer.createTransporter({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER, // jobs.renjith@gmail.com
-        pass: process.env.EMAIL_PASS  // App password
-      }
-    });
+    // Check if API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      return res.status(500).json({
+        success: false,
+        message: 'Email service not configured. Please add RESEND_API_KEY to environment variables.'
+      });
+    }
 
-    // Email content
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: 'jobs.renjith@gmail.com',
+    // Send email using Resend
+    const { data, error } = await resend.emails.send({
+      from: 'Portfolio Contact Form <onboarding@resend.dev>',
+      to: ['jobs.renjith@gmail.com'],
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -84,17 +85,23 @@ export default async function handler(req, res) {
         Submitted: ${new Date().toLocaleString()}
         From: Portfolio Contact Form
       `
-    };
+    });
 
-    // Send email
-    const info = await transporter.sendMail(mailOptions);
-    
-    console.log('Email sent successfully:', info.messageId);
+    if (error) {
+      console.error('Resend error:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to send email',
+        error: error.message
+      });
+    }
+
+    console.log('Email sent successfully:', data.id);
     
     res.status(200).json({
       success: true,
       message: 'Email sent successfully',
-      messageId: info.messageId
+      messageId: data.id
     });
 
   } catch (error) {

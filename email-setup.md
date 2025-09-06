@@ -1,49 +1,51 @@
-# Email Setup Instructions
+# Email Setup Instructions - Resend (No App Password Needed!)
 
-## Environment Variables Required
+## ✅ Much Easier Setup with Resend
 
-Add these environment variables to your Vercel project:
+**Benefits:**
+- ✅ **No Gmail App Password needed**
+- ✅ **Just one API key**
+- ✅ **3,000 emails/month FREE**
+- ✅ **5-minute setup**
+- ✅ **Professional emails**
 
-### 1. Go to Vercel Dashboard
-- Navigate to your project
-- Go to Settings → Environment Variables
-- Add the following variables:
+## Step 1: Create Resend Account
 
-### 2. Required Variables:
+1. **Go to**: https://resend.com/
+2. **Click "Get Started"**
+3. **Sign up** with your email
+4. **Verify your email** (check inbox)
+
+## Step 2: Get API Key
+
+1. **Go to**: https://resend.com/api-keys
+2. **Click "Create API Key"**
+3. **Name it**: "Portfolio Contact Form"
+4. **Copy the API key** (starts with `re_`)
+
+## Step 3: Add to Vercel
+
+1. **Go to Vercel Dashboard** → Your Project → Settings → Environment Variables
+2. **Add this variable**:
 
 ```
-EMAIL_USER=jobs.renjith@gmail.com
-EMAIL_PASS=your_gmail_app_password
+Variable Name: RESEND_API_KEY
+Value: re_your_api_key_here
+Environment: Production, Preview, Development
 ```
 
-### 3. Gmail App Password Setup:
+## Step 4: Deploy
 
-1. **Enable 2-Factor Authentication** on your Gmail account
-2. **Go to Google Account Settings** → Security
-3. **Generate App Password**:
-   - Select "Mail" as the app
-   - Select "Other" as the device
-   - Enter "Portfolio Contact Form" as the name
-   - Copy the generated 16-character password
-4. **Use this password** as `EMAIL_PASS` in Vercel
-
-### 4. Vercel Environment Variables:
-
-- **Variable Name**: `EMAIL_USER`
-- **Value**: `jobs.renjith@gmail.com`
-- **Environment**: Production, Preview, Development
-
-- **Variable Name**: `EMAIL_PASS`
-- **Value**: `your_16_character_app_password`
-- **Environment**: Production, Preview, Development
+1. **Commit and push** your changes
+2. **Wait for deployment** (2-3 minutes)
+3. **Test your contact form**
 
 ## How It Works:
 
 1. User submits contact form
-2. API processes the submission
-3. Email is sent to `jobs.renjith@gmail.com`
-4. User receives confirmation
-5. You receive email notification
+2. Resend API sends email to `jobs.renjith@gmail.com`
+3. User receives confirmation
+4. You receive professional email notification
 
 ## Email Features:
 
@@ -52,3 +54,16 @@ EMAIL_PASS=your_gmail_app_password
 - **Reply button** to respond directly
 - **Timestamp** and source information
 - **Professional formatting**
+- **No Gmail setup required**
+
+## Troubleshooting:
+
+**If emails don't work:**
+- Check if `RESEND_API_KEY` is set in Vercel
+- Verify the API key is correct
+- Check Vercel function logs for errors
+
+**Free Tier Limits:**
+- 3,000 emails per month
+- 100 emails per day
+- Perfect for portfolio websites
