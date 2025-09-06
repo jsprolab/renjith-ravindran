@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://jsprolab.github.io/renjith-ravindran",
+  "homepage": "https://renjith.online",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
