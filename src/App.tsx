@@ -43,7 +43,7 @@ function App() {
   return (
     <>
       <ContextProvider>
-        <Router basename={import.meta.env.PROD ? '/renjith-ravindran' : '/'}>
+        <Router basename="/">
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path="about" element={<About />} />
