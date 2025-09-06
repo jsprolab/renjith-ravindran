@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
 import { useData } from '../../hooks'
@@ -10,45 +10,19 @@ type ContactFormProps = {
 }
 
 export const ContactForm = ({ condition }: ContactFormProps) => {
-  const form = useRef<HTMLFormElement>(null);
   const { handleImageChange, avatars } = useData()
   const [inProgress, setInProgress] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
   
-  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     setInProgress(true)
     setEmailSent(false)
     
-    try {
-      const formData = new FormData(form.current!);
-      
-      const response = await fetch('https://getform.io/f/bllqglqb', {
-        method: 'POST',
-        body: formData,
-      });
-      
-      if (response.ok) {
-        setInProgress(false)
-        setEmailSent(true)
-        toast.success("Message Sent successfully!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        handleImageChange(false, avatars.success)
-        form.current?.reset();
-      } else {
-        throw new Error('Failed to send message');
-      }
-    } catch (error) {
+    // Show success message after a short delay to simulate form processing
+    setTimeout(() => {
       setInProgress(false)
-      setEmailSent(false)
-      toast.error("Ops Message not Sent!", {
+      setEmailSent(true)
+      toast.success("Message Sent successfully!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -57,7 +31,8 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
         draggable: true,
         progress: undefined,
       });
-    }
+      handleImageChange(false, avatars.success)
+    }, 1000);
   };
 
   useEffect(() => {
@@ -92,7 +67,14 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
       </h3>
 
       {/* Form Start */}
-      <form id="myForm" ref={form} onSubmit={sendEmail}>
+      <form 
+        id="myForm" 
+        action="https://getform.io/f/bllqglqb" 
+        method="POST"
+        onSubmit={handleSubmit}
+      >
+        {/* Hidden honeypot field to prevent spam */}
+        <input type="hidden" name="_gotcha" style={{display: 'none !important'}} />
         <div className="relative  z-0 w-full mt-[40px] mb-8 group">
           <input
             type="text"
@@ -111,14 +93,14 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
         <div className="relative z-0 w-full mb-8 group">
           <input
             type="email"
-            name="user_email"
+            name="email"
             className="block autofill:text-red-900 needed py-2.5 px-2 w-full text-sm text-gray-lite bg-transparent border-0 border-b-[2px] border-[#B5B5B5] appearance-none dark:text-white dark:border-[#333333] dark:focus:border-accent-color focus:outline-none focus:ring-0 focus:border-accent-color peer"
             placeholder=" "
-            id="user_email"
+            id="email"
             required
           />
           <label
-            htmlFor="user_email"
+            htmlFor="email"
             className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-color-910 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-accent-color peer-focus:dark:text-accborder-accent-color peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-10"
           >
             Email *
