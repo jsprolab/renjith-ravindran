@@ -61,7 +61,7 @@ export default async function handler(req, res) {
 
         // Send email notification using Resend
         try {
-          const { Resend } = require('resend');
+          const { Resend } = await import('resend');
           const resend = new Resend(process.env.RESEND_API_KEY);
 
           if (process.env.RESEND_API_KEY) {

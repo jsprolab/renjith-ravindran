@@ -1,6 +1,4 @@
-// Direct email sending API endpoint
-import { Resend } from 'resend';
-
+// Simple email sending API endpoint without external dependencies
 export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -38,11 +36,8 @@ export default async function handler(req, res) {
       });
     }
 
-    // Initialize Resend
-    const resend = new Resend(process.env.RESEND_API_KEY);
-
-    // Send email
-    const { data, error } = await resend.emails.send({
+    // Send email using fetch to Resend API
+    const emailData = {
       from: 'Portfolio Contact Form <onboarding@resend.dev>',
       to: ['jobs.renjith@gmail.com'],
       subject: `New Contact Form Submission from ${name}`,
@@ -86,23 +81,34 @@ export default async function handler(req, res) {
         Submitted: ${new Date().toLocaleString()}
         From: Portfolio Contact Form
       `
+    };
+
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(emailData)
     });
 
-    if (error) {
-      console.error('Resend error:', error);
+    const result = await response.json();
+
+    if (!response.ok) {
+      console.error('Resend API error:', result);
       return res.status(500).json({
         success: false,
         message: 'Failed to send email',
-        error: error.message
+        error: result.message || 'Unknown error'
       });
     }
 
-    console.log('Email sent successfully:', data.id);
+    console.log('Email sent successfully:', result.id);
     
     res.status(200).json({
       success: true,
       message: 'Email sent successfully',
-      messageId: data.id
+      messageId: result.id
     });
 
   } catch (error) {
