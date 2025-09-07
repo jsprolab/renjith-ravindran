@@ -87,9 +87,21 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('Login error:', error);
+    
+    // Provide more specific error messages
+    let errorMessage = 'Internal server error';
+    if (error.message.includes('MONGODB_URI')) {
+      errorMessage = 'Database configuration error';
+    } else if (error.message.includes('connect')) {
+      errorMessage = 'Database connection failed';
+    } else if (error.message.includes('password')) {
+      errorMessage = 'Password validation error';
+    }
+    
     res.status(500).json({
       success: false,
-      message: 'Internal server error'
+      message: errorMessage,
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 }
