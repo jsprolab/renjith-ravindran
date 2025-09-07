@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom"
 import { FaRegUser } from "react-icons/fa"
 import { CgNotes } from "react-icons/cg"
 import { RiContactsBookLine } from "react-icons/ri"
+import { FaUserShield } from "react-icons/fa"
 
 import avatarIdea from '../assets/about/avatar-idea.png'
 import avatarCoding from '../assets/about/avatar-coding.png'
@@ -110,6 +111,12 @@ export const data = () => {
           name: "Contact",
           link: "/contact",
           icon: <RiContactsBookLine />,
+        },
+        {
+          id: "05",
+          name: "Admin",
+          link: "/admin",
+          icon: <FaUserShield />,
         },
       ];
 

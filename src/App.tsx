@@ -65,6 +65,9 @@ function App() {
 
   return (
     <>
+      <div style={{position: 'fixed', top: 0, left: 0, background: 'red', color: 'white', padding: '10px', zIndex: 9999, fontSize: '12px'}}>
+        Debug: Path={window.location.pathname} | Stored={sessionStorage.getItem('github-pages-path')}
+      </div>
       <ContextProvider>
         <Router basename="/">
           <Routes>
