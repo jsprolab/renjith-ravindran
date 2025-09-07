@@ -27,14 +27,24 @@ function App() {
       // Check if we have a stored path from the 404.html redirect
       const storedPath = sessionStorage.getItem('github-pages-path');
       
+      console.log('🔍 GitHub Pages Routing Debug:');
+      console.log('  - Current path:', window.location.pathname);
+      console.log('  - Stored path:', storedPath);
+      
       if (storedPath) {
+        console.log('  - Navigating to stored path:', storedPath);
+        
         // Clear the stored path
         sessionStorage.removeItem('github-pages-path');
         
         // Navigate to the stored path
         window.history.replaceState(null, '', storedPath);
+        
+        console.log('  - Navigation complete. New path:', window.location.pathname);
         return;
       }
+      
+      console.log('  - No stored path found, staying on current path');
     };
 
     // Run the routing handler
