@@ -70,7 +70,12 @@ export const AdminDashboard = () => {
       const result = await response.json();
 
       if (result.success) {
-        setContacts(result.data.contacts);
+        // Type assertion to ensure status is properly typed
+        const typedContacts = result.data.contacts.map((contact: any) => ({
+          ...contact,
+          status: contact.status as 'new' | 'read' | 'replied' | 'archived'
+        }));
+        setContacts(typedContacts);
         setTotalPages(result.data.pagination.pages);
       } else {
         toast.error(result.message || 'Failed to fetch contacts');
@@ -100,7 +105,7 @@ export const AdminDashboard = () => {
 
       if (result.success) {
         setContacts(contacts.map(contact => 
-          contact._id === id ? { ...contact, status } : contact
+          contact._id === id ? { ...contact, status: status as 'new' | 'read' | 'replied' | 'archived' } : contact
         ));
         toast.success('Contact status updated');
       } else {
