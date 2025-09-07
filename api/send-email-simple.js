@@ -1,6 +1,6 @@
 // Simple email sending API endpoint with database storage
-import connectDB from '../lib/mongodb';
-import Contact from '../models/Contact';
+import connectDB from '../lib/mongodb.js';
+import Contact from '../models/Contact.js';
 
 export default async function handler(req, res) {
   // Set CORS headers

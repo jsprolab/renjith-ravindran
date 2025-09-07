@@ -1,7 +1,7 @@
 // Admin login API
-import connectDB from '../../lib/mongodb';
-import Admin from '../../models/Admin';
-import { createAuthResponse } from '../../lib/auth';
+import connectDB from '../../lib/mongodb.js';
+import Admin from '../../models/Admin.js';
+import { createAuthResponse } from '../../lib/auth.js';
 
 export default async function handler(req, res) {
   // Set CORS headers

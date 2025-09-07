@@ -1,7 +1,7 @@
 // Admin contacts management API
-import connectDB from '../../lib/mongodb';
-import Contact from '../../models/Contact';
-import { verifyToken } from '../../lib/auth';
+import connectDB from '../../lib/mongodb.js';
+import Contact from '../../models/Contact.js';
+import { verifyToken } from '../../lib/auth.js';
 
 export default async function handler(req, res) {
   // Set CORS headers
