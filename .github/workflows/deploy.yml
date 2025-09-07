@@ -32,9 +32,6 @@ jobs:
       - name: Build
         run: npm run build
         
-      - name: Copy redirects file
-        run: cp _redirects ./build
-        
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
