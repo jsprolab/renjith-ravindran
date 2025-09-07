@@ -25,21 +25,16 @@ function App() {
     // Handle GitHub Pages SPA routing
     // Check if we're on GitHub Pages and need to handle the URL format
     const currentUrl = window.location.href;
-    console.log('Current URL:', currentUrl);
-    console.log('Current pathname:', window.location.pathname);
     
     if (currentUrl.includes('/?/')) {
       const path = currentUrl.split('/?/')[1];
-      console.log('Extracted path:', path);
       if (path) {
         // Decode the path and navigate to it
         const decodedPath = path.replace(/~and~/g, '&');
         // Remove any query parameters from the decoded path
         const cleanPath = decodedPath.split('?')[0];
-        console.log('Clean path:', cleanPath);
         // Update the URL without reloading
         window.history.replaceState(null, '', '/' + cleanPath);
-        console.log('URL after replace:', window.location.href);
       }
     }
   }, []);
@@ -70,18 +65,15 @@ function App() {
     <>
       <ContextProvider>
         <Router basename="/">
-          <div>
-            <p>Debug: Current pathname is {window.location.pathname}</p>
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path="about" element={<About />} />
-              <Route path="projects" element={<Projects />} />
-              <Route path='resume' element={<Resume />} />
-              <Route path='contact' element={<Contact />} />
-              <Route path='admin' element={<AdminLogin />} />
-              <Route path='admin/dashboard' element={<AdminDashboard />} />
-            </Routes>
-          </div>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="projects" element={<Projects />} />
+            <Route path='resume' element={<Resume />} />
+            <Route path='contact' element={<Contact />} />
+            <Route path='admin' element={<AdminLogin />} />
+            <Route path='admin/dashboard' element={<AdminDashboard />} />
+          </Routes>
         </Router>
       </ContextProvider>
       <ToastContainer 
