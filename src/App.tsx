@@ -20,6 +20,7 @@ import { AdminLogin, AdminDashboard } from './pages/admin';
 
 
 function App() {
+  console.log('App component is rendering');
 
   useEffect(() => {
     // Handle GitHub Pages SPA routing
