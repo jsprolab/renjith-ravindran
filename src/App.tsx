@@ -25,16 +25,21 @@ function App() {
     // Handle GitHub Pages SPA routing
     // Check if we're on GitHub Pages and need to handle the URL format
     const currentUrl = window.location.href;
+    console.log('🔍 Current URL:', currentUrl);
+    console.log('🔍 Current pathname:', window.location.pathname);
     
     if (currentUrl.includes('/?/')) {
       const path = currentUrl.split('/?/')[1];
+      console.log('🔍 Extracted path:', path);
       if (path) {
         // Decode the path and navigate to it
         const decodedPath = path.replace(/~and~/g, '&');
         // Remove any query parameters from the decoded path
         const cleanPath = decodedPath.split('?')[0];
+        console.log('🔍 Clean path:', cleanPath);
         // Update the URL without reloading
         window.history.replaceState(null, '', '/' + cleanPath);
+        console.log('🔍 New pathname:', window.location.pathname);
       }
     }
   }, []);
