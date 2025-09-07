@@ -24,6 +24,19 @@ console.log('Current path:', window.location.pathname);
 function App() {
 
   useEffect(() => {
+    // Handle GitHub Pages SPA routing
+    // Check if we're on GitHub Pages and need to handle the URL format
+    if (window.location.pathname.includes('/?/')) {
+      const path = window.location.pathname.split('/?/')[1];
+      if (path) {
+        // Decode the path and navigate to it
+        const decodedPath = path.replace(/~and~/g, '&');
+        window.history.replaceState(null, '', '/' + decodedPath);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
 
     AOS.init({ duration: 1200 });
     let timerId : any = null;
