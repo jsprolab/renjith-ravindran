@@ -34,13 +34,31 @@ export default async function handler(req, res) {
     }
 
     // Find admin by username or email
-    const admin = await Admin.findOne({
+    let admin = await Admin.findOne({
       $or: [
         { username: username.toLowerCase() },
         { email: username.toLowerCase() }
       ],
       isActive: true
     });
+
+    // If no admin exists and trying to login with default credentials, create admin user
+    if (!admin && username.toLowerCase() === 'admin' && password === 'admin123') {
+      // Check if any admin exists at all
+      const adminCount = await Admin.countDocuments();
+      if (adminCount === 0) {
+        // Create default admin user
+        admin = new Admin({
+          username: 'admin',
+          email: 'jobs.renjith@gmail.com',
+          password: 'admin123',
+          role: 'super_admin',
+          isActive: true
+        });
+        await admin.save();
+        console.log('✅ Default admin user created');
+      }
+    }
 
     if (!admin) {
       return res.status(401).json({
