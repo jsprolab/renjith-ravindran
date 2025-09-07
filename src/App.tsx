@@ -18,6 +18,9 @@ import {
 
 import { AdminLogin, AdminDashboard } from './pages/admin';
 
+// Debug: Log current path
+console.log('Current path:', window.location.pathname);
+
 function App() {
 
   useEffect(() => {
@@ -54,6 +57,7 @@ function App() {
                         <Route path='contact' element={<Contact />} />
                         <Route path='admin' element={<AdminLogin />} />
                         <Route path='admin/dashboard' element={<AdminDashboard />} />
+                        <Route path='admin-test' element={<div>Admin Test Page</div>} />
                       </Routes>
         </Router>
       </ContextProvider>
