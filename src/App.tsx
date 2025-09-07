@@ -37,10 +37,13 @@ function App() {
         // Clear the stored path
         sessionStorage.removeItem('github-pages-path');
         
-        // Navigate to the stored path
-        window.history.replaceState(null, '', storedPath);
-        
-        console.log('  - Navigation complete. New path:', window.location.pathname);
+        // Use a small delay to ensure React Router is ready
+        setTimeout(() => {
+          window.history.replaceState(null, '', storedPath);
+          // Force a re-render by triggering a location change
+          window.dispatchEvent(new PopStateEvent('popstate'));
+          console.log('  - Navigation complete. New path:', window.location.pathname);
+        }, 100);
         return;
       }
       
