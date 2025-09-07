@@ -23,20 +23,20 @@
     <link rel="stylesheet" href="/assets/index-a97afecd.css">
     
     <script>
-      // Simple SPA routing for GitHub Pages
-      // Store the current path before React loads
+      // Simple GitHub Pages SPA routing
       (function() {
         var path = window.location.pathname;
         var search = window.location.search;
         var hash = window.location.hash;
         
-        // Store the original path in sessionStorage for React to use
-        sessionStorage.setItem('github-pages-path', path + search + hash);
+        // Store the current path for React to handle
+        if (path !== '/') {
+          sessionStorage.setItem('github-pages-path', path + search + hash);
+        }
         
-        // Redirect to root with the path as a query parameter
-        if (path !== '/' && !path.includes('/?/')) {
-          var newUrl = window.location.origin + '/?/' + path.slice(1) + search + hash;
-          window.location.replace(newUrl);
+        // Always redirect to root - let React handle the routing
+        if (path !== '/') {
+          window.location.replace('/');
         }
       })();
     </script>

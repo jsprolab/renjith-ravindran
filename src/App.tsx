@@ -35,25 +35,6 @@ function App() {
         window.history.replaceState(null, '', storedPath);
         return;
       }
-      
-      // Handle the /?/ format from direct URL access
-      const currentUrl = window.location.href;
-      if (currentUrl.includes('/?/')) {
-        const path = currentUrl.split('/?/')[1];
-        if (path) {
-          // Extract path, search, and hash
-          const [pathPart, searchPart] = path.split('?');
-          const [search, hash] = searchPart ? searchPart.split('#') : ['', ''];
-          
-          // Reconstruct the URL
-          const newPath = '/' + pathPart;
-          const newSearch = search ? '?' + search : '';
-          const newHash = hash ? '#' + hash : '';
-          
-          // Update the URL without reloading
-          window.history.replaceState(null, '', newPath + newSearch + newHash);
-        }
-      }
     };
 
     // Run the routing handler
