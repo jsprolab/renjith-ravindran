@@ -34,8 +34,8 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
         throw new Error('Please fill in all required fields');
       }
       
-                  // Use relative API URL for Vercel deployment
-                  const apiUrl = '/api/email/send';
+                  // Use contacts API that saves to database
+                  const apiUrl = '/api/contacts';
                   
                   // Create abort controller for timeout
                   const controller = new AbortController();

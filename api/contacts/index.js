@@ -1,6 +1,9 @@
 // Vercel API Route for Contact Form
 // Handles GET and POST requests for contact submissions
 
+import { connectDB } from '../../lib/mongodb.js';
+import Contact from '../../models/Contact.js';
+
 export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,17 +21,40 @@ export default async function handler(req, res) {
     case 'GET':
       // Get all contact submissions (for admin purposes)
       try {
-        // In a real app, you'd fetch from a database
-        // For now, return a sample response
+        await connectDB();
+        
+        const { page = 1, limit = 10, status, search } = req.query;
+        const skip = (parseInt(page) - 1) * parseInt(limit);
+        
+        // Build filter object
+        const filter = {};
+        if (status) filter.status = status;
+        if (search) {
+          filter.$or = [
+            { name: { $regex: search, $options: 'i' } },
+            { email: { $regex: search, $options: 'i' } },
+            { message: { $regex: search, $options: 'i' } }
+          ];
+        }
+        
+        const contacts = await Contact.find(filter)
+          .sort({ createdAt: -1 })
+          .skip(skip)
+          .limit(parseInt(limit));
+        
+        const total = await Contact.countDocuments(filter);
+        
         res.status(200).json({
           success: true,
-          message: 'Contact API is working',
           data: {
-            total: 0,
-            submissions: []
+            contacts,
+            total,
+            page: parseInt(page),
+            pages: Math.ceil(total / parseInt(limit))
           }
         });
       } catch (error) {
+        console.error('Error fetching contacts:', error);
         res.status(500).json({
           success: false,
           message: 'Error fetching contacts',
@@ -123,28 +149,37 @@ export default async function handler(req, res) {
           console.error('Error sending email:', emailError);
         }
 
-        // Log the submission
-        console.log('New contact submission:', {
+        // Connect to database and save contact
+        await connectDB();
+        
+        // Get client IP
+        const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || 'unknown';
+        
+        // Create contact record in database
+        const newContact = new Contact({
           name,
           email,
           message,
-          timestamp: new Date().toISOString(),
-          ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress
+          status: 'new',
+          ip,
+          createdAt: new Date()
         });
-
-        // Create contact record
-        const newContact = {
-          id: Date.now(), // Simple ID generation
-          name,
-          email,
-          message,
-          created_at: new Date().toISOString()
-        };
+        
+        await newContact.save();
+        
+        console.log('Contact saved to database:', newContact._id);
 
         res.status(201).json({
           success: true,
           message: 'Contact submission received successfully and email sent',
-          data: newContact
+          data: {
+            id: newContact._id,
+            name: newContact.name,
+            email: newContact.email,
+            message: newContact.message,
+            status: newContact.status,
+            createdAt: newContact.createdAt
+          }
         });
 
       } catch (error) {
