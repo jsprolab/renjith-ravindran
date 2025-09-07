@@ -61,7 +61,7 @@ export const AdminDashboard = () => {
       if (statusFilter) params.append('status', statusFilter);
       if (searchTerm) params.append('search', searchTerm);
 
-      const response = await fetch(`https://renjith-ravindran.vercel.app/api/admin/contacts?${params}`, {
+      const response = await fetch(`/api/admin/contacts?${params}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -92,7 +92,7 @@ export const AdminDashboard = () => {
     try {
       const token = localStorage.getItem('adminToken');
       
-      const response = await fetch('https://renjith-ravindran.vercel.app/api/admin/contacts', {
+      const response = await fetch('/api/admin/contacts', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ export const AdminDashboard = () => {
     try {
       const token = localStorage.getItem('adminToken');
       
-      const response = await fetch('https://renjith-ravindran.vercel.app/api/admin/contacts', {
+      const response = await fetch('/api/admin/contacts', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

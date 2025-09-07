@@ -21,38 +21,6 @@ import { AdminLogin, AdminDashboard } from './pages/admin';
 
 function App() {
 
-  useEffect(() => {
-    // Handle GitHub Pages SPA routing
-    const handleGitHubPagesRouting = () => {
-      // Check if we have a stored path from the 404.html redirect
-      const storedPath = sessionStorage.getItem('github-pages-path');
-      
-      console.log('🔍 GitHub Pages Routing Debug:');
-      console.log('  - Current path:', window.location.pathname);
-      console.log('  - Stored path:', storedPath);
-      
-      if (storedPath) {
-        console.log('  - Navigating to stored path:', storedPath);
-        
-        // Clear the stored path
-        sessionStorage.removeItem('github-pages-path');
-        
-        // Use a small delay to ensure React Router is ready
-        setTimeout(() => {
-          window.history.replaceState(null, '', storedPath);
-          // Force a re-render by triggering a location change
-          window.dispatchEvent(new PopStateEvent('popstate'));
-          console.log('  - Navigation complete. New path:', window.location.pathname);
-        }, 100);
-        return;
-      }
-      
-      console.log('  - No stored path found, staying on current path');
-    };
-
-    // Run the routing handler
-    handleGitHubPagesRouting();
-  }, []);
 
   useEffect(() => {
 
@@ -78,9 +46,6 @@ function App() {
 
   return (
     <>
-      <div style={{position: 'fixed', top: 0, left: 0, background: 'red', color: 'white', padding: '10px', zIndex: 9999, fontSize: '12px'}}>
-        Debug: Path={window.location.pathname} | Stored={sessionStorage.getItem('github-pages-path')}
-      </div>
       <ContextProvider>
         <Router basename="/">
           <Routes>

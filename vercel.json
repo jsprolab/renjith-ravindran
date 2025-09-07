@@ -9,21 +9,14 @@
     "api/email/send.js": {
       "maxDuration": 10
     },
-    "api/send-email.js": {
+    "api/auth/login.js": {
       "maxDuration": 10
     },
-    "api/send-email-simple.js": {
-      "maxDuration": 10
-    },
-    "api/send-email-fallback.js": {
+    "api/admin/contacts.js": {
       "maxDuration": 10
     }
   },
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    },
     {
       "source": "/((?!api/).*)",
       "destination": "/index.html"

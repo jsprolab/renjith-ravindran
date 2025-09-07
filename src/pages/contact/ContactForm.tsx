@@ -34,10 +34,8 @@ export const ContactForm = ({ condition }: ContactFormProps) => {
         throw new Error('Please fill in all required fields');
       }
       
-                  // Use dynamic API URL based on current domain
-                  const apiUrl = window.location.hostname === 'renjith.online' 
-                    ? 'https://renjith-ravindran.vercel.app/api/send-email-simple'
-                    : '/api/send-email-simple';
+                  // Use relative API URL for Vercel deployment
+                  const apiUrl = '/api/email/send';
                   
                   // Create abort controller for timeout
                   const controller = new AbortController();
