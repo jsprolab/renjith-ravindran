@@ -23,20 +23,41 @@ function App() {
 
   useEffect(() => {
     // Handle GitHub Pages SPA routing
-    // Check if we're on GitHub Pages and need to handle the URL format
-    const currentUrl = window.location.href;
-    
-    if (currentUrl.includes('/?/')) {
-      const path = currentUrl.split('/?/')[1];
-      if (path) {
-        // Decode the path and navigate to it
-        const decodedPath = path.replace(/~and~/g, '&');
-        // Remove any query parameters from the decoded path
-        const cleanPath = decodedPath.split('?')[0];
-        // Update the URL without reloading
-        window.history.replaceState(null, '', '/' + cleanPath);
+    const handleGitHubPagesRouting = () => {
+      // Check if we have a stored path from the 404.html redirect
+      const storedPath = sessionStorage.getItem('github-pages-path');
+      
+      if (storedPath) {
+        // Clear the stored path
+        sessionStorage.removeItem('github-pages-path');
+        
+        // Navigate to the stored path
+        window.history.replaceState(null, '', storedPath);
+        return;
       }
-    }
+      
+      // Handle the /?/ format from direct URL access
+      const currentUrl = window.location.href;
+      if (currentUrl.includes('/?/')) {
+        const path = currentUrl.split('/?/')[1];
+        if (path) {
+          // Extract path, search, and hash
+          const [pathPart, searchPart] = path.split('?');
+          const [search, hash] = searchPart ? searchPart.split('#') : ['', ''];
+          
+          // Reconstruct the URL
+          const newPath = '/' + pathPart;
+          const newSearch = search ? '?' + search : '';
+          const newHash = hash ? '#' + hash : '';
+          
+          // Update the URL without reloading
+          window.history.replaceState(null, '', newPath + newSearch + newHash);
+        }
+      }
+    };
+
+    // Run the routing handler
+    handleGitHubPagesRouting();
   }, []);
 
   useEffect(() => {
@@ -73,6 +94,8 @@ function App() {
             <Route path='contact' element={<Contact />} />
             <Route path='admin' element={<AdminLogin />} />
             <Route path='admin/dashboard' element={<AdminDashboard />} />
+            {/* Fallback route for any unmatched paths */}
+            <Route path="*" element={<Home />} />
           </Routes>
         </Router>
       </ContextProvider>
