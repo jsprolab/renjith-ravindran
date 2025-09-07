@@ -24,12 +24,16 @@ function App() {
   useEffect(() => {
     // Handle GitHub Pages SPA routing
     // Check if we're on GitHub Pages and need to handle the URL format
-    if (window.location.pathname.includes('/?/')) {
-      const path = window.location.pathname.split('/?/')[1];
+    const currentUrl = window.location.href;
+    if (currentUrl.includes('/?/')) {
+      const path = currentUrl.split('/?/')[1];
       if (path) {
         // Decode the path and navigate to it
         const decodedPath = path.replace(/~and~/g, '&');
-        window.history.replaceState(null, '', '/' + decodedPath);
+        // Remove any query parameters from the decoded path
+        const cleanPath = decodedPath.split('?')[0];
+        // Update the URL without reloading
+        window.history.replaceState(null, '', '/' + cleanPath);
       }
     }
   }, []);
