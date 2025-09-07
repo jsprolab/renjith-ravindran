@@ -1,7 +1,7 @@
 // Vercel API Route for Contact Form
 // Handles GET and POST requests for contact submissions
 
-import { connectDB } from '../../lib/mongodb.js';
+import connectDB from '../../lib/mongodb.js';
 import Contact from '../../models/Contact.js';
 
 export default async function handler(req, res) {
