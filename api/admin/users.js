@@ -5,7 +5,7 @@ import { verifyToken } from '../../lib/auth.js';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
@@ -45,6 +45,36 @@ export default async function handler(req, res) {
       await admin.save();
 
       return res.status(201).json({ success: true, data: admin.toJSON() });
+
+    } else if (req.method === 'PUT') {
+      const { id, username, email, password, role } = req.body;
+
+      if (!id) {
+        return res.status(400).json({ success: false, message: 'User ID is required' });
+      }
+
+      const admin = await Admin.findById(id);
+      if (!admin) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+
+      if (username && username !== admin.username) {
+        const exists = await Admin.findOne({ username, _id: { $ne: id } });
+        if (exists) return res.status(409).json({ success: false, message: 'Username already taken' });
+        admin.username = username;
+      }
+
+      if (email && email !== admin.email) {
+        const exists = await Admin.findOne({ email, _id: { $ne: id } });
+        if (exists) return res.status(409).json({ success: false, message: 'Email already taken' });
+        admin.email = email;
+      }
+
+      if (role) admin.role = role;
+      if (password) admin.password = password;
+
+      await admin.save();
+      return res.status(200).json({ success: true, data: admin.toJSON() });
 
     } else if (req.method === 'DELETE') {
       const { id } = req.body;
