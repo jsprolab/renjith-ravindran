@@ -7,7 +7,6 @@ import {
   AiOutlineMenu,
   AiOutlineClose,
   AiOutlineUser,
-  AiOutlineDashboard,
 } from 'react-icons/ai';
 
 interface AdminLayoutProps {
@@ -16,7 +15,6 @@ interface AdminLayoutProps {
 }
 
 const navItems = [
-  { label: 'Dashboard', path: '/admin/dashboard', icon: <AiOutlineDashboard className="h-4 w-4" /> },
   { label: 'Contacts', path: '/admin/dashboard', icon: <AiOutlineMail className="h-4 w-4" /> },
   { label: 'Settings', path: '/admin/settings', icon: <AiOutlineSetting className="h-4 w-4" /> },
 ];
