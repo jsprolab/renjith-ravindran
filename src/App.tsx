@@ -13,7 +13,8 @@ import {
   About,
   Contact,
   Resume,
-  Projects
+  Projects,
+  Publications
 } from './pages';
 
 import { AdminLogin, AdminDashboard, AdminSettings } from './pages/admin';
@@ -54,6 +55,7 @@ function App() {
             <Route path="projects" element={<Projects />} />
             <Route path='resume' element={<Resume />} />
             <Route path='contact' element={<Contact />} />
+            <Route path='publications' element={<Publications />} />
             <Route path='admin' element={<AdminLogin />} />
             <Route path='admin/dashboard' element={<AdminDashboard />} />
             <Route path='admin/settings' element={<AdminSettings />} />

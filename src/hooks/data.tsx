@@ -2,10 +2,10 @@ import { useState, useEffect, ReactNode, useCallback } from "react"
 
 import { Link, useLocation } from "react-router-dom"
 
-import { FaRegUser } from "react-icons/fa"
+import { FaRegUser, FaUserShield } from "react-icons/fa"
 import { CgNotes } from "react-icons/cg"
 import { RiContactsBookLine } from "react-icons/ri"
-import { FaUserShield } from "react-icons/fa"
+import { MdOutlineMenuBook } from "react-icons/md"
 
 import avatarIdea from '../assets/about/renjith-profile.jpeg'
 import avatarCoding from '../assets/about/renjith-profile.jpeg'
@@ -105,6 +105,12 @@ export const data = () => {
           name: "Resume",
           link: "/resume",
           icon: <CgNotes />,
+        },
+        {
+          id: "06",
+          name: "Publications",
+          link: "/publications",
+          icon: <MdOutlineMenuBook />,
         },
         {
           id: "04",
