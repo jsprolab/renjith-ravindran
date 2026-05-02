@@ -1,5 +1,5 @@
 import { useData } from '../../hooks/useData'
-import { ResumeCard } from './ResumeCard'
+import { ExperienceSection, EducationSection } from './ResumeCard'
 import { Avatar, Footer, PageTitle, DesktopNav, MobileNav, MenuButton, ThemeToggleButton, SocialLinks } from '../../components'
 import { HomeCard } from '../home/HomeCard'
 import ResumeDoc from '../../assets/resume/Renjith_Ravindran.pdf'
@@ -64,9 +64,8 @@ export const Resume = () => {
             <div className="py-12 px-4 md:px-0">
               {/*Resume page title */}
               <h2 data-aos="fade-left" className="after-effect after:left-44 mt-[12rem] lg:mt-0">Resume</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-6 mt-[30px]">
-                {/* resume items map */}
-                <ResumeCard />
+              <div className="mt-[30px]">
+                <ExperienceSection />
               </div>
             </div>
           </div>
@@ -127,6 +126,12 @@ export const Resume = () => {
             </div>
           </div>
           {/* End .container */}
+
+          {/* Education at the end */}
+          <div className="container sm:px-5 md:px-10 lg:px-14 py-12 px-4">
+            <EducationSection />
+          </div>
+
           <div className='pb-20'>
             <Footer />
           </div>
