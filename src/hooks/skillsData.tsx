@@ -1,48 +1,60 @@
-
 export type SkillsDataReturnType = ReturnType<typeof skillsData>
 
 export const skillsData = () => {
     const advanceSkills = [
-        "JavaScript",
-        "TypeScript",
         "React",
-        "Node.js",
-        "HTML & CSS",
-        "CSS",
-        "HTML5",
-        "D3.js",
-        "Ionic",
-        "Python",
-        "SQL",
-        "UI Design",   
-        "Project Management",
-        "Agile Devlopment & SCRUM",
-        "Debugging & Troubleshooting",
-        "Data Science",
-        "Object Oriented Programming",
-        "Functional Programming",
-        "Software Development Life Cycle",
-        "Teamwork"
-    ]
-    
-    const familiarSkills = [
-        "Vue.js",
+        "Next.js",
         "Angular",
-        "C++",
-        "Express.js",
-        "CI/CD",
+        "TypeScript",
+        "JavaScript (ES2015+)",
+        "HTML5 & CSS3",
+        "Tailwind CSS",
+        "Node.js",
+        "Python",
+        "Micro-frontends",
+        "Design Systems",
+        "WCAG Accessibility",
+        "Core Web Vitals",
+        "REST & GraphQL",
+        "MongoDB & PostgreSQL",
+        "GCP & AWS",
+        "Webpack & Vite",
+        "Redux & RxJS",
+        "Framer Motion & GSAP",
+        "CI/CD & GitHub Actions",
+        "Agile / Scrum",
+        "Front-End Architecture",
+        "Performance Optimization",
+        "Component-Driven Development",
+    ]
+
+    const familiarSkills = [
+        "VueJS",
+        "Ionic",
+        "D3.js",
         "Docker",
         "Kubernetes",
+        "PHP",
+        "Java",
+        "BigQuery",
+        "GraphQL",
+        "Web Components",
+        "PWA",
+        "i18n / RTL",
     ]
-    
-    const tools = [
-        "VS Code",
-        "Git & GitHub",
-        "MS Power Platform Apps",
-        "Terminal (Bash, Powershell)",
-        "Jira Software"
-      ]
 
+    const tools = [
+        "VS Code / Cursor IDE",
+        "Git & GitHub",
+        "Figma / Adobe XD",
+        "Jira & Confluence",
+        "Storybook",
+        "Jest / Cypress / Playwright",
+        "Claude / GitHub Copilot",
+        "BrowserStack",
+        "Nx / Turborepo",
+        "Google Analytics 4",
+    ]
 
     return {
         advanceSkills,

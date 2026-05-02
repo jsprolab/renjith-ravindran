@@ -122,18 +122,25 @@ export const data = () => {
 
       const educationArray = [
         {
+            id: 1,
+            date: "2003 – 2007",
+            title: "Bachelor of Technology (B.Tech.) — Computer Science & Engineering",
+            place: "Government Engineering College Sreekrishnapuram | University of Calicut, Kerala, India",
+            color: "#EEF5FA"
+        },
+        {
             id: 2,
-            date: "2016-2017",
-            title: "Professional Certification - Front-End Engineer",
-            place: "FreeCodeCamp",
+            date: "2016 – 2017",
+            title: "Front End Development Certification",
+            place: "freeCodeCamp",
             color: "#EEF5FA",
             link: "https://www.freecodecamp.org/certification/renjith-kr/legacy-front-end"
         },
         {
-            id: 1,
-            date: "2003-2007",
-            title: "Bachelor of Technology in Computer Science and Engineering",
-            place: "University of Calicut - India",
+            id: 3,
+            date: "2022 – 2023",
+            title: "AI in Healthcare Specialization (5 Courses)",
+            place: "Stanford University / Coursera",
             color: "#EEF5FA"
         },
       ]
@@ -141,72 +148,72 @@ export const data = () => {
       const experienceArray = [
         {
             id: 1,
-            date: "July 2014 - PRESENT (5 Years 4 Months)",
-            title: "System Architect",
-            place: "Google (as vendor through HCL America)",
-            location: "Mountain View",
-            description: "Worked with Google's internal tools development team. Joined as a Technical Lead and got promoted as Senior Technical Lead in Oct 2015 and later promoted to Technical Architect in June 2017. In July 2018, I moved to Google Mountain view location from Google Hyderabad.",
+            date: "Apr 2020 – Present",
+            title: "Senior Software Engineer III — Front-End Architect",
+            place: "Castlight Health, Inc.",
+            location: "San Francisco Bay Area, CA",
+            description: "Lead front-end architecture for enterprise digital-health platforms. Architected Curelight — a national vaccine-finder integrated with CDC Vaccines.gov — reaching 100M+ users since 2021. Built secure identity, scheduling, and personalization systems improving reliability by 45%+.",
             color: "#EEF5FA"
         },
         {
             id: 2,
-            date: "Nov 2010 - June 2014 (3 Years 8 Months)",
-            title: "Senior Interactive Developer L1",
-            place: "Target (as Vendor through Sapient Consulting Pvt Ltd)",
-            location: "Bangalore",
-            description: "I was working at Target corporate from Nov 2010 to June 2014 and was part of core target.com development team. In Nov 2010, I started as an Interactive Developer L2 in June 2011. Later In June 2013, I was promoted to Senior Interactive Developer L1.",
+            date: "Jul 2014 – Apr 2020",
+            title: "Technical Architect → System Architect",
+            place: "Google (Vendor through HCL Technologies Ltd.)",
+            location: "Mountain View, CA & Hyderabad, India",
+            description: "Headed 8-member front-end team across Google My Business, Google Maps, Stadia, Chromecast, and gTech Ads. Built the Google Maps 'Follow' button and social-commerce layer. Served as Certified Google JavaScript Code Reviewer. Awards: HCL MVP (2017), HCL Innovation (2016), Google Best Team Player (2015).",
             color: "#EEF5FA"
         },
         {
             id: 3,
-            date: "June 2009 - Sept 2010 (1 Year 3 Months)",
-            title: "UI Developer",
-            place: "Ahsan Consulting Pvt Ltd",
-            location: "Chennai",
-            description: "I was part of the core social networking product development team and one of the individual contributors for most of the product developments.",
+            date: "Nov 2010 – Jun 2014",
+            title: "Senior Interactive Developer L1",
+            place: "Target (Vendor through Publicis Sapient Consulting Pvt. Ltd.)",
+            location: "Bangalore, India",
+            description: "Led front-end engineering for Target's $1.8B Everest Redesign — migrating Target.com from Amazon-hosted infrastructure. Primary implementer of cart, checkout, and guest account modules serving millions of shoppers. Awards: Sapient Core-Value Award x3, Target Great Team Card.",
             color: "#EEF5FA"
         },
         {
             id: 4,
-            date: "June 2008 - May 2009 (1 Year)",
-            title: "Web Developer",
-            place: "VirtualMaze Pvt Ltd",
-            location: "Chennai",
-            description: "I was a Web Developer leading projects independently. I owned the design, development and deployment of end to end projects, which included database design.",
+            date: "Jun 2009 – Sep 2010",
+            title: "UI Lead / Web Developer",
+            place: "Ashan Consulting Pvt. Ltd.",
+            location: "Chennai, India",
+            description: "Led a team delivering consumer and social-community platforms: GroupDeal, Isocial, Discuz, Channel, Rayzz, and Volume.",
             color: "#EEF5FA"
         },
         {
             id: 5,
-            date: "June 2007 - May 2008 (1 Year)",
+            date: "Jun 2007 – May 2009",
             title: "Web Developer",
-            place: "ProconIT Solutions",
-            location: "Chennai",
-            description: "I was a Web Developer working with other engineers. I learned and improved my skills in design, development and deployment of end to end projects.",
+            place: "VirtualMaze Softsys Pvt. Ltd.",
+            location: "Chennai, India",
+            description: "Developed and maintained company web properties end-to-end using PHP, MySQL, HTML, CSS, and JavaScript.",
             color: "#EEF5FA"
-        }
+        },
       ]
 
       const contactArray = [
         {
             id: 1,
-            title: "Phone ",
-            item1: "+1(812) 361-8052",
-            item2: "+1(812) 361-8052",
+            title: "Phone",
+            item1: "+1 332-201-2312",
+            item2: "+1 332-201-2312",
             bg: "#FCF4FF"
         },
         {
             id: 2,
-            title: "Email ",
-            item1: "ca.garcia2011@gmail.com",
-            item2: "ca.garcia2011@gmail.com",
+            title: "Email",
+            item1: "renjith.wky@gmail.com",
+            item2: "renjith.wky@gmail.com",
             bg: "#FCF4FF",
             bgDark: "accent-color"
         },
         {
             id: 3,
-            title: "Address ",
-            item1: "Bloomington, Indiana, US",
-            item2: "Bloomington, Indiana, US",
+            title: "Address",
+            item1: "Fremont, CA",
+            item2: "Fremont, CA",
             bg: "#FCF4FF",
             bgDark: "accent-color"
         },
