@@ -1,0 +1,32 @@
+/* Minimal AOS CSS — only fade-up, fade-down, fade-left, fade-right, fade-in at 1200ms */
+
+[data-aos] {
+  pointer-events: none;
+}
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
+
+/* Default duration (set via AOS.init({ duration: 1200 })) */
+body[data-aos-duration="1200"] [data-aos],
+[data-aos][data-aos-duration="1200"] {
+  transition-duration: 1.2s;
+}
+
+/* Fade animation base */
+[data-aos^="fade"][data-aos^="fade"] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: ease;
+}
+[data-aos^="fade"][data-aos^="fade"].aos-animate {
+  opacity: 1;
+  transform: translateZ(0);
+}
+
+/* Individual directions */
+[data-aos="fade-up"]    { transform: translate3d(0, 60px, 0); }
+[data-aos="fade-down"]  { transform: translate3d(0, -60px, 0); }
+[data-aos="fade-right"] { transform: translate3d(-60px, 0, 0); }
+[data-aos="fade-left"]  { transform: translate3d(60px, 0, 0); }
+[data-aos="fade-in"]    { transform: translateZ(0); }
