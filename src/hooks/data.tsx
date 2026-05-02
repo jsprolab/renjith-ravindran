@@ -2,7 +2,7 @@ import { useState, useEffect, ReactNode, useCallback } from "react"
 
 import { Link, useLocation } from "react-router-dom"
 
-import { FaRegUser, FaUserShield } from "react-icons/fa"
+import { FaRegUser } from "react-icons/fa"
 import { CgNotes } from "react-icons/cg"
 import { RiContactsBookLine } from "react-icons/ri"
 import { MdOutlineMenuBook } from "react-icons/md"
@@ -12,7 +12,6 @@ import avatarCoding from '../assets/about/renjith-profile.jpeg'
 import avatarFist from '../assets/about/renjith-profile.jpeg'
 import avatarSuccess from '../assets/about/renjith-profile.jpeg'
 import avatarGreatness from '../assets/about/renjith-profile.jpeg'
-import { FiCodesandbox } from "react-icons/fi"
 
 export type DataReturnType = ReturnType<typeof data>
 
@@ -117,12 +116,6 @@ export const data = () => {
           name: "Contact",
           link: "/contact",
           icon: <RiContactsBookLine />,
-        },
-        {
-          id: "05",
-          name: "Admin",
-          link: "/admin",
-          icon: <FaUserShield />,
         },
       ];
 
