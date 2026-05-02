@@ -68,7 +68,7 @@ export const Resume = () => {
                   <div className="hidden md:block w-full rounded-xl overflow-hidden border-2 border-[#EEF5FA] dark:border-[#212425]" data-aos="fade-up">
                     <iframe
                       src={ResumeDoc}
-                      title="Renjith Ravindran Resume"
+                      title="Renjith K Ravindran Resume"
                       className="w-full"
                       style={{ height: '900px' }}
                     />

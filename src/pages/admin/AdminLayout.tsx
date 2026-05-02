@@ -48,7 +48,7 @@ export const AdminLayout = ({ children, adminUser }: AdminLayoutProps) => {
                 RR
               </div>
               <div>
-                <p className="text-sm font-bold leading-tight">Renjith Ravindran</p>
+                <p className="text-sm font-bold leading-tight">Renjith K Ravindran</p>
                 <p className="text-xs text-gray-400 leading-tight">Admin Panel</p>
               </div>
             </div>

@@ -22,7 +22,7 @@ export const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
             >
-            Renjith Ravindran
+            Renjith K Ravindran
             </a>
             .
             | {" "}
