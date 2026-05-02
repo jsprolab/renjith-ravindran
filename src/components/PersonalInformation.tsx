@@ -5,8 +5,8 @@ export function PersonalInformation() {
         <div className="p-7 rounded-2xl mt-7 bg-[#F3F6F6] dark:bg-[#1D1D1D]">
 
             <div className="flex border-b border-[#E3E3E3] dark:border-[#3D3A3A] py-2.5">
-                <a href="mailto:renjith.wky@gmail.com" className="cursor-pointer">
-                    <span className="flex-shrink-0 socialbtn bg-white dark:bg-black text-[#6AB5B9] shadow-md">
+                <a href="mailto:renjith.wky@gmail.com" aria-label="Send email to renjith.wky@gmail.com" className="cursor-pointer">
+                    <span aria-hidden="true" className="flex-shrink-0 socialbtn bg-white dark:bg-black text-[#6AB5B9] shadow-md">
                         <FaEnvelopeOpenText />
                     </span>
                 </a>
@@ -24,8 +24,8 @@ export function PersonalInformation() {
             </div>
 
             <div className="flex border-b border-[#E3E3E3] dark:border-[#3D3A3A] py-2.5">
-                <a href="tel:+13322012312" className="cursor-pointer">
-                    <span className="flex-shrink-0 socialbtn bg-white dark:bg-black text-accent-color shadow-md">
+                <a href="tel:+13322012312" aria-label="Call +1 332-201-2312" className="cursor-pointer">
+                    <span aria-hidden="true" className="flex-shrink-0 socialbtn bg-white dark:bg-black text-accent-color shadow-md">
                         <FaPhone />
                     </span>
                 </a>
@@ -43,7 +43,7 @@ export function PersonalInformation() {
             </div>
 
             <div className="flex py-2.5">
-                <span className="flex-shrink-0 socialbtn bg-white dark:bg-black text-accent-color shadow-md">
+                <span aria-hidden="true" className="flex-shrink-0 socialbtn bg-white dark:bg-black text-accent-color shadow-md">
                     <FaMapMarkerAlt />
                 </span>
                 <div className="text-left ml-2.5">
