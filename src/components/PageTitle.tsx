@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 
-const SITE_URL = "https://renjithravindran.com";
+const SITE_URL = "https://renjith.online";
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 const SITE_NAME = "Renjith Kathalikkattil Ravindran";
 

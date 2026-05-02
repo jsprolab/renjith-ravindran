@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/
 
-Sitemap: https://renjithravindran.com/sitemap.xml
+Sitemap: https://renjith.online/sitemap.xml
