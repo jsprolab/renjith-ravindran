@@ -7,11 +7,11 @@ import { CgNotes } from "react-icons/cg"
 import { RiContactsBookLine } from "react-icons/ri"
 import { FaUserShield } from "react-icons/fa"
 
-import avatarIdea from '../assets/about/avatar-idea.png'
-import avatarCoding from '../assets/about/avatar-coding.png'
-import avatarFist from '../assets/about/avatar-fist.png'
-import avatarSuccess from '../assets/about/avatar-success.png'
-import avatarGreatness from '../assets/about/avatar-greatness.png'
+import avatarIdea from '../assets/about/renjith-profile.jpeg'
+import avatarCoding from '../assets/about/renjith-profile.jpeg'
+import avatarFist from '../assets/about/renjith-profile.jpeg'
+import avatarSuccess from '../assets/about/renjith-profile.jpeg'
+import avatarGreatness from '../assets/about/renjith-profile.jpeg'
 import { FiCodesandbox } from "react-icons/fi"
 
 export type DataReturnType = ReturnType<typeof data>
