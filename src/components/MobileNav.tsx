@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react"
 import { FiMoon, FiSun } from "react-icons/fi"
 import { useData } from "../hooks"
 import { NavLink } from "./NavLink"
@@ -11,8 +12,22 @@ interface MobileNavProps {
 export function MobileNav({ menuOpen, setMenuOpen }: MobileNavProps) {
     const { menuItems, check, handleTheme } = useData()
     const location = useLocation()
+    const navRef = useRef<HTMLElement>(null)
+
+    // inert removes closed nav from both tab order and screen readers
+    useEffect(() => {
+        const el = navRef.current
+        if (!el) return
+        if (menuOpen) {
+            el.removeAttribute('inert')
+        } else {
+            el.setAttribute('inert', '')
+        }
+    }, [menuOpen])
+
     return (
         <nav
+            ref={navRef}
             id="mobile-nav"
             aria-label="Mobile navigation"
             aria-hidden={!menuOpen}

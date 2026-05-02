@@ -1,11 +1,10 @@
 import { ContactForm } from "./ContactForm";
 
-import { Footer, PageTitle, DesktopNav, MobileNav, MenuButton, ThemeToggleButton, SocialLinks } from '../../components';
+import { Footer, PageTitle, DesktopNav, MobileNav, MenuButton, ThemeToggleButton, SocialLinks, Logo } from "../../components";
 import { useEffect, useState } from "react";
 import { useData } from "../../hooks";
 import { Avatar } from "../../components";
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo/renjith.png';
 import { HomeCard } from '../home/HomeCard';
 
 
@@ -37,7 +36,7 @@ export const Contact = () => {
                     <div className="w-full z-[1000] flex justify-between items-center px-4">
                         {/* website logo */}
                         <Link to="/">
-                            <img className="h-[26px] lg:h-[32px] rounded-md hover:scale-[105%] transition-all duration-50 ease-in-out" src={logo} alt="logo" />
+                            <Logo />
                         </Link>
                         <div className="flex items-center">
                             {/* dark and light mode button */}

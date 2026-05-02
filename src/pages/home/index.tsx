@@ -15,7 +15,7 @@ import {
 import { About } from '../about'
 
 import { useData } from '../../hooks'
-import logo from '../../assets/logo/renjith.png'
+import { Logo } from '../../components'
 
 export const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -45,7 +45,7 @@ export const Home = () => {
           <div className={`w-full z-[1000] flex justify-between items-center px-4`}>
             {/* website logo */}
             <Link to="/">
-              <img className="h-[26px] lg:h-[32px] rounded-md hover:scale-[105%] transition-all duration-50 ease-in-out" src={logo} alt="logo" />
+              <Logo />
             </Link>
             <div className="flex items-center">
               {/* dark and light mode button */}

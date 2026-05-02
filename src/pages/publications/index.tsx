@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Footer, PageTitle, DesktopNav, MobileNav, MenuButton, ThemeToggleButton, SocialLinks } from '../../components'
+import { Footer, PageTitle, DesktopNav, MobileNav, MenuButton, ThemeToggleButton, SocialLinks, Logo } from '../../components'
 import { HomeCard } from '../home/HomeCard'
 import { useData } from '../../hooks'
 import { publicationsData, Publication } from '../../hooks/publicationsData'
-import logo from '../../assets/logo/renjith.png'
 import { AiOutlineLink } from 'react-icons/ai'
 import { MdOutlineMenuBook } from 'react-icons/md'
 import { BsJournalBookmark, BsPeopleFill } from 'react-icons/bs'
@@ -59,7 +58,7 @@ export const Publications = () => {
                 <div className="container z-[1000] w-full bg-primary-bg-light dark:bg-primary-bg-dark lg:bg-transparent lg:dark:bg-transparent flex justify-between py-5 lg:px-0 lg:pt-[35px]">
                     <div className="w-full z-[1000] flex justify-between items-center px-4">
                         <Link to="/">
-                            <img className="h-[26px] lg:h-[32px] rounded-md hover:scale-[105%] transition-all duration-50 ease-in-out" src={logo} alt="logo" />
+                            <Logo />
                         </Link>
                         <div className="flex items-center">
                             <ThemeToggleButton />

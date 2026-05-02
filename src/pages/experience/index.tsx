@@ -1,10 +1,9 @@
 import { useData } from '../../hooks/useData'
 import { ExperienceSection, EducationSection } from '../resume/ResumeCard'
-import { Avatar, Footer, PageTitle, DesktopNav, MobileNav, MenuButton, ThemeToggleButton, SocialLinks } from '../../components'
+import { Avatar, Footer, PageTitle, DesktopNav, MobileNav, MenuButton, ThemeToggleButton, SocialLinks, Logo } from '../../components'
 import { HomeCard } from '../home/HomeCard'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../../assets/logo/renjith.png'
 
 export const Experience = () => {
   const { advanceSkills, familiarSkills, tools, avatars, handleImageChange, setPrivacyPolicyIsOpen } = useData()
@@ -25,7 +24,7 @@ export const Experience = () => {
         <div className="container z-[1000] w-full bg-primary-bg-light dark:bg-primary-bg-dark lg:bg-transparent lg:dark:bg-transparent flex justify-between py-5 lg:px-0 lg:pt-[35px]">
           <div className="w-full z-[1000] flex justify-between items-center px-4">
             <Link to="/">
-              <img className="h-[26px] lg:h-[32px] rounded-md hover:scale-[105%] transition-all duration-50 ease-in-out" src={logo} alt="logo" />
+              <Logo />
             </Link>
             <div className="flex items-center">
               <ThemeToggleButton />
