@@ -16,7 +16,7 @@ import {
   Projects
 } from './pages';
 
-import { AdminLogin, AdminDashboard } from './pages/admin';
+import { AdminLogin, AdminDashboard, AdminSettings } from './pages/admin';
 
 
 function App() {
@@ -56,6 +56,7 @@ function App() {
             <Route path='contact' element={<Contact />} />
             <Route path='admin' element={<AdminLogin />} />
             <Route path='admin/dashboard' element={<AdminDashboard />} />
+            <Route path='admin/settings' element={<AdminSettings />} />
             {/* Fallback route for any unmatched paths */}
             <Route path="*" element={<Home />} />
           </Routes>

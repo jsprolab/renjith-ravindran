@@ -2,17 +2,17 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { 
-  AiOutlineLoading3Quarters, 
-  AiOutlineMail, 
-  AiOutlineUser, 
+import {
+  AiOutlineLoading3Quarters,
+  AiOutlineMail,
+  AiOutlineUser,
   AiOutlineCalendar,
   AiOutlineSearch,
   AiOutlineFilter,
   AiOutlineDelete,
   AiOutlineEye,
-  AiOutlineLogout
 } from 'react-icons/ai';
+import { AdminLayout } from './AdminLayout';
 
 interface Contact {
   _id: string;
@@ -148,12 +148,6 @@ export const AdminDashboard = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('adminToken');
-    localStorage.removeItem('adminUser');
-    navigate('/admin');
-  };
-
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'new': return 'bg-red-100 text-red-800';
@@ -166,34 +160,21 @@ export const AdminDashboard = () => {
 
   if (loading && contacts.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <AiOutlineLoading3Quarters className="h-8 w-8 animate-spin text-blue-600" />
-      </div>
+      <AdminLayout adminUser={adminUser}>
+        <div className="flex items-center justify-center h-64">
+          <AiOutlineLoading3Quarters className="h-8 w-8 animate-spin text-blue-600" />
+        </div>
+      </AdminLayout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Header */}
-      <div className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-              <p className="text-sm text-gray-600">Welcome back, {adminUser?.username}</p>
-            </div>
-            <button
-              onClick={handleLogout}
-              className="flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
-            >
-              <AiOutlineLogout className="h-4 w-4 mr-2" />
-              Logout
-            </button>
-          </div>
+    <AdminLayout adminUser={adminUser}>
+      <div className="max-w-7xl mx-auto space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Contacts</h1>
+          <p className="text-sm text-gray-500 mt-1">Manage contact form submissions</p>
         </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         {/* Filters */}
         <div className="bg-white shadow rounded-lg p-6 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -379,6 +360,6 @@ export const AdminDashboard = () => {
           </div>
         )}
       </div>
-    </div>
+    </AdminLayout>
   );
 };

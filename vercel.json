@@ -11,6 +11,9 @@
     },
     "api/admin/contacts.js": {
       "maxDuration": 10
+    },
+    "api/admin/users.js": {
+      "maxDuration": 10
     }
   },
   "rewrites": [
