@@ -33,7 +33,11 @@ export const Home = () => {
   }, [menuOpen])
   return (
     <main className={`relative`}>
-      <PageTitle title="Home"></PageTitle>
+      <PageTitle
+        title="Home"
+        description="Renjith Kathalikkattil Ravindran — Senior Software Engineer III and Principal UI Architect with 18+ years of experience building enterprise-scale digital platforms. Expert in React, Next.js, Angular, TypeScript, micro-frontends, and design systems. Castlight Health, Google, Target. IEEE Senior Member. Fremont, CA."
+        path="/"
+      />
       {/* End pagetitle */}
 
       <section className="z-[100] bg-white dark:bg-black min-h-screen bg-no-repeat bg-center bg-cover bg-fixed w-full">

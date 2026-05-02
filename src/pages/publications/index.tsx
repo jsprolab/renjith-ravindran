@@ -49,7 +49,11 @@ export const Publications = () => {
 
     return (
         <main className="relative">
-            <PageTitle title="Publications" />
+            <PageTitle
+              title="Publications"
+              description="Publications by Renjith Kathalikkattil Ravindran — 18+ peer-reviewed journal articles and conference papers in AI, healthcare technology, machine learning, and human-computer interaction. IEEE Senior Member. Published in IEEE, Springer, and DZone. Google Scholar profile available."
+              path="/publications"
+            />
 
             <section className="z-[100] bg-white dark:bg-black min-h-screen bg-no-repeat bg-center bg-cover bg-fixed w-full">
                 <div className="container z-[1000] w-full bg-primary-bg-light dark:bg-primary-bg-dark lg:bg-transparent lg:dark:bg-transparent flex justify-between py-5 lg:px-0 lg:pt-[35px]">

@@ -25,7 +25,11 @@ export const Contact = () => {
 
     return (
         <main className="relative">
-            <PageTitle title="Contact" />
+            <PageTitle
+              title="Contact"
+              description="Get in touch with Renjith Kathalikkattil Ravindran — Senior Software Engineer and Front-End Architect based in Fremont, California. Available for senior engineering roles, consulting, collaborations, and speaking opportunities."
+              path="/contact"
+            />
             {/* End pagetitle */}
 
             <section className="z-[100] bg-white dark:bg-black min-h-screen bg-no-repeat bg-center bg-cover bg-fixed w-full">

@@ -30,7 +30,11 @@ export const About = () => {
   }, [])
   return (
     <section>
-      <PageTitle title="About"></PageTitle>
+      <PageTitle
+        title="About"
+        description="About Renjith Kathalikkattil Ravindran — 18+ years of front-end leadership at Castlight Health, Google, and Target. Architected Curelight national vaccine-finder (100M+ users). Built Google Maps Follow button. Led Target.com $1.8B Everest Redesign. IEEE Senior Member with 18+ publications and 50+ peer reviews."
+        path="/about"
+      />
       {/* End pagetitle */}
 
       <div className=" lg:rounded-2xl bg-white dark:bg-[#111111] overflow-hidden mb-[2rem]">

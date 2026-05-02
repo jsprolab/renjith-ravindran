@@ -15,7 +15,11 @@ export const Experience = () => {
 
   return (
     <main className="relative">
-      <PageTitle title="Experience" />
+      <PageTitle
+        title="Experience"
+        description="Work experience of Renjith Kathalikkattil Ravindran — Senior Software Engineer III at Castlight Health, Front-End Architect at Google (via HCL), Lead Developer at Target (via Sapient). Skills: React, Next.js, Angular, TypeScript, Node.js, Python, GraphQL, AWS, GCP, Micro-frontends, Design Systems, WCAG Accessibility."
+        path="/experience"
+      />
 
       <section className="z-[100] bg-white dark:bg-black min-h-screen bg-no-repeat bg-center bg-cover bg-fixed w-full">
         <div className="container z-[1000] w-full bg-primary-bg-light dark:bg-primary-bg-dark lg:bg-transparent lg:dark:bg-transparent flex justify-between py-5 lg:px-0 lg:pt-[35px]">

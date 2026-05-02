@@ -17,7 +17,11 @@ export const Resume = () => {
 
   return (
     <main className="relative">
-      <PageTitle title="Resume" />
+      <PageTitle
+        title="Resume"
+        description="Download or view the resume of Renjith Kathalikkattil Ravindran — Senior Software Engineer III and Principal UI Architect. 18+ years experience in React, Next.js, Angular, TypeScript, front-end architecture, and enterprise digital health platforms."
+        path="/resume"
+      />
 
       <section className="z-[100] bg-white dark:bg-black min-h-screen bg-no-repeat bg-center bg-cover bg-fixed w-full">
         <div className="container z-[1000] w-full bg-primary-bg-light dark:bg-primary-bg-dark lg:bg-transparent lg:dark:bg-transparent flex justify-between py-5 lg:px-0 lg:pt-[35px]">
