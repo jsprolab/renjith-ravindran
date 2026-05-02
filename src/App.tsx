@@ -13,6 +13,7 @@ import {
   About,
   Contact,
   Resume,
+  Experience,
   Projects,
   Publications
 } from './pages';
@@ -54,6 +55,7 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="projects" element={<Projects />} />
             <Route path='resume' element={<Resume />} />
+            <Route path='experience' element={<Experience />} />
             <Route path='contact' element={<Contact />} />
             <Route path='publications' element={<Publications />} />
             <Route path='admin' element={<AdminLogin />} />

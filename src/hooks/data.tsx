@@ -5,7 +5,8 @@ import { Link, useLocation } from "react-router-dom"
 import { FaRegUser } from "react-icons/fa"
 import { CgNotes } from "react-icons/cg"
 import { RiContactsBookLine } from "react-icons/ri"
-import { MdOutlineMenuBook } from "react-icons/md"
+import { MdOutlineMenuBook, MdOutlineBusinessCenter } from "react-icons/md"
+import { AiOutlineFilePdf } from "react-icons/ai"
 
 import avatarIdea from '../assets/about/renjith-profile.jpeg'
 import avatarCoding from '../assets/about/renjith-profile.jpeg'
@@ -93,17 +94,17 @@ export const data = () => {
           link: "/",
           icon: <FaRegUser />,
         },
-        // {
-        //   id: "02",
-        //   name: "Projects",
-        //   link: "/projects",
-        //   icon: <FiCodesandbox />,
-        // },
         {
           id: "03",
+          name: "Experience",
+          link: "/experience",
+          icon: <MdOutlineBusinessCenter />,
+        },
+        {
+          id: "08",
           name: "Resume",
           link: "/resume",
-          icon: <CgNotes />,
+          icon: <AiOutlineFilePdf />,
         },
         {
           id: "06",
