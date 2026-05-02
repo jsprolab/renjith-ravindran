@@ -14,12 +14,12 @@ export function SocialLinks() {
                     <FaGithub />
                 </span>
             </a>
-            <a href="https://scholar.google.com/citations?user=renjith" target="_blank" rel="noopener noreferrer" title="Google Scholar">
+            <a href="https://scholar.google.com/citations?user=_FTuFE0AAAAJ&hl=en" target="_blank" rel="noopener noreferrer" title="Google Scholar">
                 <span className="socialbtn">
                     <SiGooglescholar />
                 </span>
             </a>
-            <a href="https://ieeexplore.ieee.org/author/renjith" target="_blank" rel="noopener noreferrer" title="IEEE Xplore">
+            <a href="https://ieeexplore.ieee.org/author/742613591848955" target="_blank" rel="noopener noreferrer" title="IEEE Xplore">
                 <span className="socialbtn">
                     <SiIeee />
                 </span>
